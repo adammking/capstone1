@@ -1,0 +1,59 @@
+(Community Section)
+Database tables:
+
+User Table:
+Id: int/primary key
+Username - unique/text
+Password - hashed/password
+skills_id - not required - foreign_key
+
+Posts Table:
+Id: int/primary key
+Title - required/text
+Body - required/text
+User_id: int/foreign key
+
+Skills Table:
+Id: int/primary key
+Name: text/required
+Approach: text/required
+User_id: foreign key
+
+Likes Table:
+Id: int/primary key
+User_id: int/foreign key
+Post_id: int/foreign key 
+
+
+Relationships (Community Section):
+Posts -> Users -> secondary - likes, backref to posts
+Skills -> Users, backref=skills
+
+
+(crisis program)
+States Table:
+Id: int/primary key
+Name: required/text
+
+Counties Table:
+Id: int/primary key
+Name: required/text
+State_id: foreign key
+
+Mental_Health_Center(MHC) Table:
+Id: int/primary key
+Name: required/text
+State_id: int/foreign key
+County_id: int/foreign key
+Phone_number: number
+Crisis_phone_number: number
+Website: URL
+
+Zip Codes Table:
+Id: int/primary key
+County_id: int/foreign key
+
+Relationships (Crisis program):
+Counties -> state -> Secondary - zip codes, backref = counties
+MHC -> counties, backref=MHC
+MHC -> state,  backref=MHC
