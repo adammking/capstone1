@@ -62,11 +62,6 @@ class Mental_Health_Center(db.Model):
         nullable=False
     )
 
-    phone_number = db.Column(
-        db.Text,
-        nullable=False
-    )
-
     crisis_number = db.Column(
         db.Text,
         nullable=False
@@ -113,4 +108,9 @@ class Zip_Code(db.Model):
         db.Integer,
         db.ForeignKey('counties.id', ondelete='CASCADE'),
         nullable=False
+    )
+
+    mhc_id = db.Column(
+        db.Integer, 
+        db.ForeignKey('mchs.id', ondelete='CASCADE')
     )
