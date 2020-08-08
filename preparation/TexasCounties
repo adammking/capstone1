@@ -1,254 +1,254 @@
-Anderson	
-Andrews	
-Angelina	
-Aransas	
-Archer	
-Armstrong	
-Atascosa	
-Austin	
-Bailey	
-Bandera	
-Bastrop	
-Baylor	
-Bee	
-Bell	
-Bexar	
-Blanco	
-Borden	
-Bosque	
-Bowie	
-Brazoria	
-Brazos	
-Brewster	
-Briscoe	
-Brooks	
-Brown	
-Burleson	
-Burnet	
-Caldwell	
-Calhoun	
-Callahan	
-Cameron	
-Camp	
-Carson	
-Cass	
-Castro	
-Chambers	
-Cherokee	
-Childress	
-Clay	
-Cochran	
-Coke	
-Coleman	
-Collin	
-Collingsworth
-Colorado
-Comal	
-Comanche	
-Concho	
-Cooke	
-Coryell	
-Cottle	
-Crane	
-Crockett	
-Crosby	
-Culberson	
-Dallam	
-Dallas	
-Dawson	
-Deaf Smith
-Delta	
-Denton	
-DeWitt	
-Dickens	
-Dimmit	
-Donley	
-Duval	
-Eastland	
-Ector	
-Edwards	
-Ellis	
-El Paso	
-Erath	
-Falls	
-Fannin	
-Fayette	
-Fisher	
-Floyd	
-Foard	
-Fort Bend	
-Franklin
-Freestone	
-Frio	
-Gaines	
-Galveston	
-Garza	
-Gillespie	
-Glasscock	
-Goliad
-Gonzales	
-Gray	
-Grayson	
-Gregg	
-Grimes	
-Guadalupe		
-Hale		
-Hall		
-Hamilton		
-Hansford		
-Hardeman	
-Hardin	
-Harris	
-Harrison	
-Hartley	
-Haskell	
-Hays	
-Hemphill	
-Henderson	
-Hidalgo	
-Hill
-Hockley	
-Hood	
-Hopkins	
-Houston	
-Howard	
-Hudspeth	
-Hunt	
-Hutchinson	
-Irion	
-Jack	
-Jackson	
-Jasper	
-Jeff Davis	
-Jefferson	
-Jim Hogg	
-Jim Wells	
-Johnson	
-Jones	
-Karnes	
-Kaufman	
-Kendall	
-Kenedy	
-Kent	
-Kerr	
-Kimble	
-King	
-Kinney	
-Kleberg	
-Knox	
-Lamar	
-Lamb	
-Lampasas	
-La Salle	
-Lavaca	
-Lee	
-Leon	
-Liberty	
-Limestone	
-Lipscomb	
-Live Oak	
-Llano	
-Loving	
-Lubbock	
-Lynn	
-McCulloch	
-McLennan	
-McMullen	
-Madison	
-Marion
-Martin	
-Mason
-Matagorda	
-Maverick	
-Medina	
-Menard	
-Midland	
-Milam	
-Mills	
-Mitchell	
-Montague	
-Montgomery	
-Moore	
-Morris	
-Motley	
-Nacogdoches	
-Navarro	
-Newton	
-Nolan
-Nueces	
-Ochiltree	
-Oldham	
-Orange	
-Palo Pinto	
-Panola	
-Parker	
-Parmer	
-Pecos	
-Polk	
-Potter	
-Presidio
-Rains
-Randall	
-Reagan	
-Real	
-Red River	
-Reeves	
-Refugio	
-Roberts	
-Robertson
-Rockwall	
-Runnels	
-Rusk	
-Sabine	
-San Augustine
-San Jacinto	
-San Patricio	
-San Saba	
-Schleicher	
-Scurry
-Shackelford	
-Shelby	
-Sherman	
-Smith	
-Somervell	
-Starr	
-Stephens	
-Sterling	
-Stonewall	
-Sutton	
-Swisher	
-Tarrant	
-Taylor	
-Terrell	
-Terry
-Throckmorton
-Titus	
-Tom Green	
-Travis	
-Trinity
-Tyler	
-Upshur	
-Upton
-Uvalde	
-Val Verde	
-Van Zandt	
-Victoria	
-Walker	
-Waller	
-Ward	
-Washington	
-Webb	
-Wharton	
-Wheeler	
-Wichita	
-Wilbarger	
-Willacy	
-Williamson	
-Wilson	
-Winkler	
-Wise	
-Wood	
-Yoakum	
-Young	
-Zapata	
-Zavala	
+County(state_id=1, name=Anderson)
+County(state_id=1, name=Andrews)
+County(state_id=1, name=Angelina)
+County(state_id=1, name=Aransas)
+County(state_id=1, name=Archer)
+County(state_id=1, name=Armstrong)
+County(state_id=1, name=Atascosa)
+County(state_id=1, name=Austin)
+County(state_id=1, name=Bailey)
+County(state_id=1, name=Bandera)
+County(state_id=1, name=Bastrop)
+County(state_id=1, name=Baylor)
+County(state_id=1, name=Bee)
+County(state_id=1, name=Bell)
+County(state_id=1, name=Bexar)
+County(state_id=1, name=Blanco)
+County(state_id=1, name=Borden)
+County(state_id=1, name=Bosque)
+County(state_id=1, name=Bowie)
+County(state_id=1, name=Brazoria)
+County(state_id=1, name=Brazos)
+County(state_id=1, name=Brewster)
+County(state_id=1, name=Briscoe)
+County(state_id=1, name=Brooks)
+County(state_id=1, name=Brown)
+County(state_id=1, name=Burleson)
+County(state_id=1, name=Burnet)
+County(state_id=1, name=Caldwell)
+County(state_id=1, name=Calhoun)
+County(state_id=1, name=Callahan)
+County(state_id=1, name=Cameron)
+County(state_id=1, name=Camp)
+County(state_id=1, name=Carson)
+County(state_id=1, name=Cass)
+County(state_id=1, name=Castro)
+County(state_id=1, name=Chambers)
+County(state_id=1, name=Cherokee)
+County(state_id=1, name=Childress)
+County(state_id=1, name=Clay)
+County(state_id=1, name=Cochran)
+County(state_id=1, name=Coke)
+County(state_id=1, name=Coleman)
+County(state_id=1, name=Collin)
+County(state_id=1, name=Collingsworth)
+County(state_id=1, name=Colorado)
+County(state_id=1, name=Comal)
+County(state_id=1, name=Comanche)
+County(state_id=1, name=Concho)
+County(state_id=1, name=Cooke)
+County(state_id=1, name=Coryell)
+County(state_id=1, name=Cottle)
+County(state_id=1, name=Crane)
+County(state_id=1, name=Crockett)
+County(state_id=1, name=Crosby)
+County(state_id=1, name=Culberson)
+County(state_id=1, name=Dallam)
+County(state_id=1, name=Dallas)
+County(state_id=1, name=Dawson)
+County(state_id=1, name=Deaf Smith)
+County(state_id=1, name=Delta)
+County(state_id=1, name=Denton)
+County(state_id=1, name=DeWitt)
+County(state_id=1, name=Dickens)
+County(state_id=1, name=Dimmit)
+County(state_id=1, name=Donley)
+County(state_id=1, name=Duval)
+County(state_id=1, name=Eastland)
+County(state_id=1, name=Ector)
+County(state_id=1, name=Edwards)
+County(state_id=1, name=Ellis)
+County(state_id=1, name=El Paso)
+County(state_id=1, name=Erath)
+County(state_id=1, name=Falls)
+County(state_id=1, name=Fannin)
+County(state_id=1, name=Fayette)
+County(state_id=1, name=Fisher)
+County(state_id=1, name=Floyd)
+County(state_id=1, name=Foard)
+County(state_id=1, name=Fort Bend)
+County(state_id=1, name=Franklin)
+County(state_id=1, name=Freestone)
+County(state_id=1, name=Frio)
+County(state_id=1, name=Gaines)
+County(state_id=1, name=Galveston)
+County(state_id=1, name=Garza)
+County(state_id=1, name=Gillespie)
+County(state_id=1, name=Glasscock)
+County(state_id=1, name=Goliad)
+County(state_id=1, name=Gonzales)
+County(state_id=1, name=Gray)
+County(state_id=1, name=Grayson)
+County(state_id=1, name=Gregg)
+County(state_id=1, name=Grimes)
+County(state_id=1, name=Guadalupe)	
+County(state_id=1, name=Hale)
+County(state_id=1, name=Hall)
+County(state_id=1, name=Hamilton)	
+County(state_id=1, name=Hansford)	
+County(state_id=1, name=Hardeman)
+County(state_id=1, name=Hardin)
+County(state_id=1, name=Harris)
+County(state_id=1, name=Harrison)
+County(state_id=1, name=Hartley)
+County(state_id=1, name=Haskell)
+County(state_id=1, name=Hays)
+County(state_id=1, name=Hemphill)
+County(state_id=1, name=Henderson)
+County(state_id=1, name=Hidalgo	)
+County(state_id=1, name=Hill)
+County(state_id=1, name=Hockley)
+County(state_id=1, name=Hood)
+County(state_id=1, name=Hopkins)
+County(state_id=1, name=Houston)
+County(state_id=1, name=Howard)
+County(state_id=1, name=Hudspeth)
+County(state_id=1, name=Hunt)
+County(state_id=1, name=Hutchinson)
+County(state_id=1, name=Irion)
+County(state_id=1, name=Jack)
+County(state_id=1, name=Jackson)
+County(state_id=1, name=Jasper)
+County(state_id=1, name=Jeff Davis)
+County(state_id=1, name=Jefferson)
+County(state_id=1, name=Jim Hogg)
+County(state_id=1, name=Jim Wells)
+County(state_id=1, name=Johnson)
+County(state_id=1, name=Jones)
+County(state_id=1, name=Karnes)
+County(state_id=1, name=Kaufman)
+County(state_id=1, name=Kendall)
+County(state_id=1, name=Kenedy)
+County(state_id=1, name=Kent)
+County(state_id=1, name=Kerr)
+County(state_id=1, name=Kimble)
+County(state_id=1, name=King)
+County(state_id=1, name=Kinney)
+County(state_id=1, name=Kleberg)
+County(state_id=1, name=Knox)
+County(state_id=1, name=Lamar)
+County(state_id=1, name=Lamb)
+County(state_id=1, name=Lampasas)
+County(state_id=1, name=La Salle)
+County(state_id=1, name=Lavaca)
+County(state_id=1, name=Lee)
+County(state_id=1, name=Leon)
+County(state_id=1, name=Liberty)
+County(state_id=1, name=Limestone)
+County(state_id=1, name=Lipscomb)
+County(state_id=1, name=Live Oak)
+County(state_id=1, name=Llano)
+County(state_id=1, name=Loving)
+County(state_id=1, name=Lubbock)
+County(state_id=1, name=Lynn)
+County(state_id=1, name=McCulloch)
+County(state_id=1, name=McLennan)
+County(state_id=1, name=McMullen)
+County(state_id=1, name=Madison)
+County(state_id=1, name=Marion)
+County(state_id=1, name=Martin)
+County(state_id=1, name=Mason)
+County(state_id=1, name=Matagorda)
+County(state_id=1, name=Maverick)
+County(state_id=1, name=Medina)
+County(state_id=1, name=Menard)
+County(state_id=1, name=Midland)
+County(state_id=1, name=Milam)
+County(state_id=1, name=Mills)
+County(state_id=1, name=Mitchell)
+County(state_id=1, name=Montague)
+County(state_id=1, name=Montgomery)
+County(state_id=1, name=Moore)
+County(state_id=1, name=Morris)
+County(state_id=1, name=Motley)
+County(state_id=1, name=Nacogdoches)
+County(state_id=1, name=Navarro)
+County(state_id=1, name=Newton)
+County(state_id=1, name=Nolan)
+County(state_id=1, name=Nueces)
+County(state_id=1, name=Ochiltree)
+County(state_id=1, name=Oldham)
+County(state_id=1, name=Orange)
+County(state_id=1, name=Palo Pinto)
+County(state_id=1, name=Panola)
+County(state_id=1, name=Parker)
+County(state_id=1, name=Parmer)
+County(state_id=1, name=Pecos)
+County(state_id=1, name=Polk)
+County(state_id=1, name=Potter)
+County(state_id=1, name=Presidio)
+County(state_id=1, name=Rains)
+County(state_id=1, name=Randall)
+County(state_id=1, name=Reagan)
+County(state_id=1, name=Real)
+County(state_id=1, name=Red River)
+County(state_id=1, name=Reeves)
+County(state_id=1, name=Refugio)
+County(state_id=1, name=Roberts)
+County(state_id=1, name=Robertson)
+County(state_id=1, name=Rockwall)
+County(state_id=1, name=Runnels)
+County(state_id=1, name=Rusk)
+County(state_id=1, name=Sabine)
+County(state_id=1, name=San Augustine)
+County(state_id=1, name=San Jacinto)
+County(state_id=1, name=San Patricio)	
+County(state_id=1, name=San Saba)
+County(state_id=1, name=Schleicher)
+County(state_id=1, name=Scurry)
+County(state_id=1, name=Shackelford)
+County(state_id=1, name=Shelby)
+County(state_id=1, name=Sherman)
+County(state_id=1, name=Smith)
+County(state_id=1, name=Somervell)
+County(state_id=1, name=Starr)
+County(state_id=1, name=Stephens)
+County(state_id=1, name=Sterling)
+County(state_id=1, name=Stonewall)
+County(state_id=1, name=Sutton)
+County(state_id=1, name=Swisher)
+County(state_id=1, name=Tarrant)
+County(state_id=1, name=Taylor)
+County(state_id=1, name=Terrell)
+County(state_id=1, name=Terry)
+County(state_id=1, name=Throckmorton)
+County(state_id=1, name=Titus)
+County(state_id=1, name=Tom Green)
+County(state_id=1, name=Travis)
+County(state_id=1, name=Trinity)
+County(state_id=1, name=Tyler)
+County(state_id=1, name=Upshur)
+County(state_id=1, name=Upton)
+County(state_id=1, name=Uvalde)
+County(state_id=1, name=Val Verde)
+County(state_id=1, name=Van Zandt)
+County(state_id=1, name=Victoria)
+County(state_id=1, name=Walker)
+County(state_id=1, name=Waller)
+County(state_id=1, name=Ward)
+County(state_id=1, name=Washington)
+County(state_id=1, name=Webb)
+County(state_id=1, name=Wharton)
+County(state_id=1, name=Wheeler)
+County(state_id=1, name=Wichita)
+County(state_id=1, name=Wilbarger)
+County(state_id=1, name=Willacy)
+County(state_id=1, name=Williamson)
+County(state_id=1, name=Wilson)
+County(state_id=1, name=Winkler)
+County(state_id=1, name=Wise)
+County(state_id=1, name=Wood)
+County(state_id=1, name=Yoakum)
+County(state_id=1, name=Young)
+County(state_id=1, name=Zapata)
+County(state_id=1, name=Zavala)

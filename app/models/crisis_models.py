@@ -78,15 +78,11 @@ class Mental_Health_Center(db.Model):
         nullable=False
     )
 
-    county_id = db.Column(
-        db.Integer,
-        db.ForeignKey('counties.id', ondelete='CASCADE'),
-        nullable=False
-    )
-
     states = db.relationship('State', backref='mhcs')
 
     counties = db.relationship('County', backref='mhcs')
+
+
 
 
 class Zip_Code(db.Model):
@@ -112,5 +108,5 @@ class Zip_Code(db.Model):
 
     mhc_id = db.Column(
         db.Integer, 
-        db.ForeignKey('mchs.id', ondelete='CASCADE')
+        db.ForeignKey('mhcs.id', ondelete='CASCADE')
     )
