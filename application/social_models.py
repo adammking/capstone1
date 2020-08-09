@@ -32,16 +32,12 @@ class User(db.Model):
         nullable=False
     )
 
-    skills_id = db.Column(
-        db.integer,
-        db.ForeignKey('skills.id', ondelete='cascade')
-    )
 
     posts = db.relationship('Post', secondary='likes', backref='users')
 
-    skills = db.relationship('Skill', backref='users')
+    
 
-     @classmethod
+    @classmethod
     def signup(cls, username, password):
         """Sign up user.
 
@@ -130,6 +126,7 @@ class Skill(db.Model):
         nullable=False,
     )
 
+    users = db.relationship('User', backref='skills')
 
 class Likes(db.Model):
     """Mapping user likes to posts."""
