@@ -5,7 +5,7 @@ db = SQLAlchemy()
 bcrypt = Bcrypt()
 
 
-def connect_db(app):
+def social_connect_db(app):
     """Connect to database."""
 
     db.app = app
@@ -35,6 +35,7 @@ class User(db.Model):
 
     posts = db.relationship('Post', secondary='likes', backref='users')
 
+    skills = db.relationship('Skill', backref='users')
     
 
     @classmethod
@@ -122,11 +123,9 @@ class Skill(db.Model):
 
     user_id = db.Column(
         db.Integer,
-        db.ForeignKey('users.id', ondelete='CASCADE'),
-        nullable=False,
+        db.ForeignKey('users.id', ondelete='CASCADE')
     )
-
-    users = db.relationship('User', backref='skills')
+    
 
 class Likes(db.Model):
     """Mapping user likes to posts."""

@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-def connect_db(app):
+def crisis_connect_db(app):
     """Connect to database."""
 
     db.app = app
@@ -23,7 +23,6 @@ class State(db.Model):
         nullable=False,
     )
 
-    counties = db.relationship('County', secondary='zip_codes', backref='states')
 
 
 class County(db.Model):
@@ -47,6 +46,11 @@ class County(db.Model):
         nullable=False,
     )
 
+    mhc_id = db.Column(
+        db.Integer, 
+        db.ForeignKey('mhcs.id', ondelete='CASCADE')
+    )
+
 class Mental_Health_Center(db.Model):
     """An individual mental health center (MHC)."""
 
@@ -62,7 +66,7 @@ class Mental_Health_Center(db.Model):
         nullable=False
     )
 
-    crisis_number = db.Column(
+    crisis_line = db.Column(
         db.Text,
         nullable=False
     )
@@ -106,7 +110,4 @@ class Zip_Code(db.Model):
         nullable=False
     )
 
-    mhc_id = db.Column(
-        db.Integer, 
-        db.ForeignKey('mhcs.id', ondelete='CASCADE')
-    )
+    

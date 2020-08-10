@@ -3,8 +3,8 @@ import os
 from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
 
-from crisis_models import db, connect_db
-from social_models import db, connect_db
+from crisis_models import db, crisis_connect_db
+from social_models import db, social_connect_db
 
 CURR_USER_KEY = "curr_user"
 
@@ -21,4 +21,5 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 toolbar = DebugToolbarExtension(app)
 
-connect_db(app)
+crisis_connect_db(app)
+social_connect_db(app)
