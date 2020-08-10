@@ -87,8 +87,6 @@ class Mental_Health_Center(db.Model):
     counties = db.relationship('County', backref='mhcs')
 
 
-
-
 class Zip_Code(db.Model):
     """An individual zip code."""
 
