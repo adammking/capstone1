@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, flash, redirect, session, g
+from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 
 from crisis_models import db, crisis_connect_db
@@ -120,12 +120,48 @@ def logout():
 ######################################## Depression info routes #######################################
 
 @app.route('/depression')
-
+def show_depr_info():
+    return render_template('/depression/info.html')#need to make  
 @app.route('/depression/referrals')
+def show_depr_referrals():
+    return render_template('/depression/referrals.html')#need to make  
 
-@app.route('/depression/treatment-info')
+@app.route('/depression/treatment')
+def show_depr_treatments():
+    return render_template('/depression/treatment.html')#need to make  
 
 
 ######################################## Cheer me up routes ################################################
 
 @app.route('/cheer-me-up')
+"""will send requests to api's and display images or jokes depending on which is requested
+example,
+lucky_num_response = requests.get(f"http://numbersapi.com/{random_num}?json")
+        lucky_year_response = requests.get(f"http://numbersapi.com/{birth_year}/year?json")
+    
+        lucky_num_json = lucky_num_response.json()
+        lucky_year_json = lucky_year_response.json()
+
+        num_response = {"fact": f"{lucky_num_json['text']}", "num": f"{random_num}"} 
+        year_response = {"fact": f"{lucky_year_json['text']}", "year": f"{birth_year}"}"""
+
+if CURR_USER_KEY in session:
+    return render_template('cheer-me-up.html')#need to make  
+
+else:
+    flash(f"Please login or register to use Cheer-me-up", "danger")
+    return redirect('/')
+
+
+
+######################################## Crisis program routes ############################################
+
+@app.route('/crisis/self')
+
+@app.route('/crisis/others')
+
+@app.route('/crisis/internal')
+
+@app.route('/crisis/substance')
+
+@app.route('/crisis/referrals')
