@@ -134,29 +134,19 @@ def show_depr_treatments():
 ######################################## Cheer me up routes ################################################
 
 @app.route('/cheer-me-up')
-"""will send requests to api's and display images or jokes depending on which is requested
-example,
-lucky_num_response = requests.get(f"http://numbersapi.com/{random_num}?json")
-        lucky_year_response = requests.get(f"http://numbersapi.com/{birth_year}/year?json")
-    
-        lucky_num_json = lucky_num_response.json()
-        lucky_year_json = lucky_year_response.json()
+def show_cheer_me_up():
+    if CURR_USER_KEY in session:
+        return render_template('cheer-me-up.html')#need to make  
 
-        num_response = {"fact": f"{lucky_num_json['text']}", "num": f"{random_num}"} 
-        year_response = {"fact": f"{lucky_year_json['text']}", "year": f"{birth_year}"}"""
-
-if CURR_USER_KEY in session:
-    return render_template('cheer-me-up.html')#need to make  
-
-else:
-    flash(f"Please login or register to use Cheer-me-up", "danger")
-    return redirect('/')
+    else:
+        flash(f"Please login or register to use Cheer-me-up", "danger")
+        return redirect('/')
 
 
 
 ######################################## Crisis program routes ############################################
 
-@app.route('/crisis/self')
+"""@app.route('/crisis/self')
 
 @app.route('/crisis/others')
 
@@ -164,4 +154,4 @@ else:
 
 @app.route('/crisis/substance')
 
-@app.route('/crisis/referrals')
+@app.route('/crisis/referrals')"""

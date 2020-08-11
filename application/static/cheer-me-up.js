@@ -36,22 +36,18 @@ async function handleCat() {
     /** Send a get request to specific api, handle response, and display data */
 
     let resp = await axios({
-        url: "https://api.thecatapi.com/v1/images/search?limit=100",
+        url: "https://api.thecatapi.com/v1/images/search?limit=1",
         method: "GET",
         headers: {
             "x-api-key": API_KEY
         }
     })
-    catInfo = resp.data
-    return catInfo
+    catPic = resp.data.url
+    $("#cat-data").append(`<div><img src=${catPic}></div>`)
+
     
 }
 
-function catPicPool(catInfo) {
-    catPics = []
-    for (pic of catInfo) {
-        catPics.append(catInfo.url[pic])
-    }
-    
-    $("#cat-data").append(`<h1>${joke}</h1>`)
-}
+jokeButton.on("click", handleJoke)
+dogButton.on("click", handleDog)
+catButton.on("click", handleCat)
