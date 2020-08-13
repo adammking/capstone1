@@ -18,32 +18,43 @@ Questions:  Are you currently having suicidal thoughts or thinking about killing
 Other needed info: risk_score = int
 """
 
+
+class Question:
+    """Question on a questionnaire."""
+
+    def __init__(self, question, choices=None, allow_text=False):
+        """Create question (assume Yes/No for choices."""
+
+        if not choices:
+            choices = ["Yes", "No"]
+
+        self.question = question
+        self.choices = choices
+        self.allow_text = allow_text
+
 class Crisis_Program():
+    
+    suicide_questions = [
+        Question("Are you currently having suicidal thoughts or thinking about killing yourself?"),
+        Question("Do you have a plan or a way to kill yourself?"),
+        Question("Do you have access to items you could use to carry out your plan?")
+    ]
 
-    def __init__(self):
+    homicide_questions = [
+        Question("Are you currently having homicidal thoughts or thinking about killing someone else (Stranger, Friend, Family Member)?"),
+        Question("Do you have a plan or a way to kill someone else?"),
+        Question("Do you have access to items you could use to carry out your plan?"),
+        Question("Do you have a specific person you want to kill?")
+    ]
 
-        self.suicide_qestions = {
-            "current": "Are you currently having suicidal thoughts or thinking about killing yourself?",
-            "plan": "Do you have a plan or a way to kill yourself?",
-            "intent": "Do you have access to items you could use to carry out your plan?"
-            "score": 0
-        }
+    psychosis_questions = [
+        Question("Are you currently hallucinating?"),
+        Question("Are you hearing voices talk to you when you are alone?"),
+        Question("Are you seeing people when you are alone?"),
+        Question("Do the voices you hear tell you to kill or hurt yourself?")
+    ]
 
-        self.homicide_qestions = {
-            "current": "Are you currently having homicidal thoughts or thinking about killing someone else (Stranger, Friend, Family Member)?",
-            "plan": "Do you have a plan or a way to kill someone else?",
-            "intent": "Do you have access to items you could use to carry out your plan?",
-            "target": "Do you have a specific person you want to kill?"
-            "score": 0
-        }
-
-        self.psychosis_qestions = {
-            "current": "Are you currently hallucinating?",
-            "audio": "Are you hearing voices talk to you when you are alone?",
-            "visual": "Are you seeing people when you are alone?",
-            "commands": "Do the voices you hear tell you to kill or hurt yourself?"
-            "score": 0
-        }
         
-        self.risk_score = 0 
+    
+
     
