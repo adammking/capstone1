@@ -38,9 +38,7 @@ def do_logout():
 
     if CURR_USER_KEY in session:
         del session[CURR_USER_KEY]
-        return True
-    
-    return False
+
 
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
@@ -53,18 +51,20 @@ def signup():
     If the there already is a user with that username: flash message
     and re-present form.
     """
-
+    if CURR_USER_KEY in session:
+        del session[CURR_USER_KEY]
     form = UserAddForm()
 
     if form.validate_on_submit():
         try:
             user = User.signup(
                 username=form.username.data,
-                password=form.password.data,
+                password=form.password.data
             )
+
             db.session.commit()
 
-        except IntegrityError:
+        except IntegrityError as e:
             flash("Username already taken", 'danger')
             return render_template('users/signup.html', form=form)
 
@@ -100,47 +100,47 @@ def login():
 def logout():
     """Handle logout of user."""
 
-    # IMPLEMENT THIS
-    if do_logout():
-        flash(f"Log Out Successful!", "success")
-        return redirect("/login")
+    do_logout()
 
-    
-    return redirect("/")
+    flash("You have successfully logged out.", 'success')
+    return redirect("/login")
 
 ######################################### User profile/community routes #############################
 
-@app.route('/users')
+
+@app.route('/users/')
 
 @app.route('/users/<user_id>')
 
-@app.route('/user/posts')
+@app.route('/users/posts')
 
 
 ######################################## Depression info routes #######################################
 
 @app.route('/depression')
 def show_depr_info():
+
     return render_template('/depression/info.html')#need to make  
+
 @app.route('/depression/referrals')
 def show_depr_referrals():
+
     return render_template('/depression/referrals.html')#need to make  
 
 @app.route('/depression/treatment')
 def show_depr_treatments():
-    return render_template('/depression/treatment.html')#need to make  
+
+    return render_template('/depression/treatments.html')#need to make  
 
 
 ######################################## Cheer me up routes ################################################
 
 @app.route('/cheer-me-up')
 def show_cheer_me_up():
-    if CURR_USER_KEY in session:
-        return render_template('cheer-me-up.html')#need to make  
 
-    else:
-        flash(f"Please login or register to use Cheer-me-up", "danger")
-        return redirect('/')
+    return render_template('cheer-me-up.html')#need to make  
+       
+   
 
 
 
