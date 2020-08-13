@@ -26,7 +26,6 @@ social_connect_db(app)
 
 ########################## Login/logout/register routes ###############################
 
-@app.before_request
 def do_login(user):
     """Log in user."""
 
@@ -109,10 +108,23 @@ def logout():
 
 
 @app.route('/users/')
+def list_users():
+
+    users = User.query.all()
+
+    return render_template('users/index.html', users=users)
+
+
 
 @app.route('/users/<user_id>')
+def show_user_profile():
+    return render_template('users/index.html')
+
 
 @app.route('/users/posts')
+def show_user_posts():
+    return render_template('users/index.html')
+
 
 
 ######################################## Depression info routes #######################################
