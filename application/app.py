@@ -158,12 +158,63 @@ def show_cheer_me_up():
 
 ######################################## Crisis program routes ############################################
 
-"""@app.route('/crisis/self')
+@app.route('/crisis/start')
+def start_crisis_program():
 
-@app.route('/crisis/others')
+    session["responses"] = []
 
-@app.route('/crisis/internal')
+    return redirect(f"/questions/{len(session['responses'])}")
 
-@app.route('/crisis/substance')
 
-@app.route('/crisis/referrals')"""
+@app.route('/crisis/questions/<int:question_num>')
+def crisis_questions(question_num):
+
+
+    if len(session["responses"]) is None:
+        return redirect("/")
+
+    if len(session["responses"]) == len(crisis.questions):
+        flash("Survey Complete")
+        return redirect("/thanks")
+
+    if len(session["responses"]) != question_num:
+        flash("Question Error, Returned to Current Question")
+        return redirect(f"/questions/{len(session['responses'])}")
+
+    question = crisis.questions[question_num].question
+    choices = crisis.questions[question_num].choices
+
+    return render_template("questions.html", question=question, choices=choices, question_num=question_num)
+
+
+
+
+
+@app.route('/crisis/answers')
+def track_crisis_answers():
+
+    answer = request.form.get("answer")
+
+    responses = session["responses"]
+    responses.append(answer)
+    session["responses"] = responses
+
+    if len(session["responses"]) == len(crisis.questions):
+        if crisis_score == 0:
+            return redirect("/crisis/coping")
+        else:
+            return redirect("/crisis/referrals")
+    else:        
+        return redirect(f"/questions/{len(session['responses'])}")
+
+
+@app.route('/crisis/referrals', methods=["GET", "POST"])
+def crisis_referral_page():
+
+    form = LocalReferralForm()
+
+    if form.validate_on_submit():
+        return redirect("crisi/referrals")
+
+
+    else render_template("crisis_referral.html")

@@ -34,24 +34,17 @@ class Question:
 
 class Crisis_Program():
     
-    suicide_questions = [
+    def __init__(self, title, questions)
+
+        self.questions = questions
+        self.title = title
+
+    crisis = Crisis_Program(
+        "Crisis Program",
+     [
         Question("Are you currently having suicidal thoughts or thinking about killing yourself?"),
-        Question("Do you have a plan or a way to kill yourself?"),
-        Question("Do you have access to items you could use to carry out your plan?")
-    ]
-
-    homicide_questions = [
         Question("Are you currently having homicidal thoughts or thinking about killing someone else (Stranger, Friend, Family Member)?"),
-        Question("Do you have a plan or a way to kill someone else?"),
-        Question("Do you have access to items you could use to carry out your plan?"),
-        Question("Do you have a specific person you want to kill?")
-    ]
-
-    psychosis_questions = [
-        Question("Are you currently hallucinating?"),
-        Question("Are you hearing voices talk to you when you are alone?"),
-        Question("Are you seeing people when you are alone?"),
-        Question("Do the voices you hear tell you to kill or hurt yourself?")
+        Question("Are you currently hallucinating?")
     ]
 
         
