@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 
+from crisis_program import crisis
 from crisis_models import db, crisis_connect_db
 from social_models import db, social_connect_db
 
@@ -158,12 +159,14 @@ def show_cheer_me_up():
 
 ######################################## Crisis program routes ############################################
 
-@app.route('/crisis/start')
+@app.route('/crisis/start', methods=["GET", "POST"])
 def start_crisis_program():
 
     session["responses"] = []
+    
+    
 
-    return redirect(f"/questions/{len(session['responses'])}")
+    return render_template("/crisis/start.html")
 
 
 @app.route('/crisis/questions/<int:question_num>')
@@ -218,4 +221,5 @@ def crisis_referral_page():
         return redirect("crisi/referrals")
 
 
-    else render_template("crisis_referral.html")
+    else:
+         return render_template("crisis_referral.html")
