@@ -184,13 +184,13 @@ def crisis_questions(question_num):
     question = crisis.questions[question_num].question
     choices = crisis.questions[question_num].choices
 
-    return render_template("questions.html", question=question, choices=choices, question_num=question_num)
+    return render_template("/crisis/questions.html", question=question, choices=choices, question_num=question_num)
 
 
 
 
 
-@app.route('/crisis/answers')
+@app.route('/crisis/answers', methods=["POST"])
 def track_crisis_answers():
 
     answer = request.form.get("answer")
@@ -214,6 +214,7 @@ def crisis_referral_page():
     form = LocalReferralForm()
 
     if form.validate_on_submit():
+        
         return redirect("crisi/referrals")
 
 
