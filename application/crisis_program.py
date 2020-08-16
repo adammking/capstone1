@@ -34,10 +34,17 @@ class Question:
 
 class Crisis_Program():
     
-    def __init__(self, title, questions)
+    def __init__(self, title, questions):
 
         self.questions = questions
         self.title = title
+
+    def calculate_score(self, lst):
+        score = 0
+        for itm of lst:
+            if itm == "Yes":
+                score + 1
+        return score
 
     crisis = Crisis_Program(
         "Crisis Program",
@@ -46,6 +53,7 @@ class Crisis_Program():
         Question("Are you currently having homicidal thoughts or thinking about killing someone else (Stranger, Friend, Family Member)?"),
         Question("Are you currently hallucinating?")
     ]
+
 
         
     

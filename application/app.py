@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 
-from crisis_program import crisis
+from crisis_program import crisis, Crisis_Program
 from crisis_models import db, crisis_connect_db
 from social_models import db, social_connect_db
 
@@ -24,7 +24,7 @@ toolbar = DebugToolbarExtension(app)
 
 crisis_connect_db(app)
 social_connect_db(app)
-
+program = Crisis_Program()
 ########################## Login/logout/register routes ###############################
 
 def do_login(user):
@@ -48,7 +48,7 @@ def signup():
 
     If form not valid, present form.
 
-    If the there already is a user with that username: flash message
+    If there already is a user with that username: flash message
     and re-present form.
     """
     if CURR_USER_KEY in session:
@@ -159,22 +159,26 @@ def show_cheer_me_up():
 
 ######################################## Crisis program routes ############################################
 
-@app.route('/crisis/start', methods=["GET", "POST"])
-def start_crisis_program():
-
-    session["responses"] = []
-    
+@app.route('/crisis/start', methods=["GET"])
+def start_crisis_program():    
     
 
     return render_template("/crisis/start.html")
 
+
+@app.route('/crisis/start', methods=["POST"])
+def start_crisis_program():
+
+    session["responses"] = []
+
+    return redirect(f"/questions/{len(session['responses'])}")
 
 @app.route('/crisis/questions/<int:question_num>')
 def crisis_questions(question_num):
 
 
     if len(session["responses"]) is None:
-        return redirect("/")
+        return redirect("/crisis/start")
 
     if len(session["responses"]) == len(crisis.questions):
         flash("Survey Complete")
@@ -191,8 +195,6 @@ def crisis_questions(question_num):
 
 
 
-
-
 @app.route('/crisis/answers', methods=["POST"])
 def track_crisis_answers():
 
@@ -203,12 +205,13 @@ def track_crisis_answers():
     session["responses"] = responses
 
     if len(session["responses"]) == len(crisis.questions):
+        crisis_score = program.calculate_score(responses)
         if crisis_score == 0:
             return redirect("/crisis/coping")
         else:
-            return redirect("/crisis/referrals")
-    else:        
-        return redirect(f"/questions/{len(session['responses'])}")
+            return redirect("/crisis/referrals") 
+                   
+    return redirect(f"/questions/{len(session['responses'])}")
 
 
 @app.route('/crisis/referrals', methods=["GET", "POST"])
@@ -218,8 +221,7 @@ def crisis_referral_page():
 
     if form.validate_on_submit():
         
-        return redirect("crisi/referrals")
+        return redirect("crisis/referrals")
 
 
-    else:
-         return render_template("crisis_referral.html")
+    return render_template("crisis_referral.html")
