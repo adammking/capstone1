@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-{% block title %} {% endblock %}
-{% block content %}
+{% block title %} Question {{question_num +1}} {% endblock %}
 
 
 
 
 {% block content %}
+
 <h1>{{question}}</h1>
 
-<form action="/answer" method="POST">
+<form action="/crisis/answers" method="POST">
     {% for itm in choices %}
     <input id="choice" type="radio" name="answer" value="{{itm}}">{{itm}}</input>
     {% endfor %}
@@ -16,10 +16,4 @@
 </form>
 
 
-
-
-
-
-
-
-{% end block%}
+{% endblock %}

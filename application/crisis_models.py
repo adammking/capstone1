@@ -93,7 +93,7 @@ class Mental_Health_Center(db.Model):
         if county in counties:
             msg = (county, county.counties.name, county.counties.crisis_number)
         else:
-            msg= f"{county} not in Texas. Please utilize national referrals"
+            msg = f"{county} not in Texas. Please utilize national referrals"
 
         return msg
 

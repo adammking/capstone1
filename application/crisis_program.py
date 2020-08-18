@@ -39,20 +39,21 @@ class Crisis_Program():
         self.questions = questions
         self.title = title
 
-    def calculate_score(self, lst):
+    def calculate_score(responses):
         score = 0
-        for itm of lst:
+        for itm in responses:
             if itm == "Yes":
-                score + 1
+                score += 1
         return score
 
-    crisis = Crisis_Program(
-        "Crisis Program",
-     [
-        Question("Are you currently having suicidal thoughts or thinking about killing yourself?"),
-        Question("Are you currently having homicidal thoughts or thinking about killing someone else (Stranger, Friend, Family Member)?"),
-        Question("Are you currently hallucinating?")
+crisis = Crisis_Program(
+    "Crisis Program",
+    [
+    Question("Are you currently having suicidal thoughts or thinking about killing yourself?"),
+    Question("Are you currently having homicidal thoughts or thinking about killing someone else (Stranger, Friend, Family Member)?"),
+    Question("Are you currently hallucinating?")
     ]
+)
 
 
 
