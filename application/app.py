@@ -111,7 +111,7 @@ def logout():
 ######################################### User profile/community routes #############################
 
 
-@app.route('/users/')
+@app.route('/users')
 def list_users():
 
     users = User.query.all()

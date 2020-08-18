@@ -1,4 +1,4 @@
-import * as API_KEY from 'api-key.js';
+import * as API_KEY from '/static/api-key.js';
 let jokeButton = $("#joke")
 let dogButton = $("#dog")
 let catButton = $("#cat")
@@ -6,12 +6,9 @@ let catButton = $("#cat")
 
 async function handleJoke() {
     /** Send a get request to specific api, handle response, and display data */
-
-    let resp = await axios({
-        url: "https://icanhazdadjoke.com/",
-        method: "GET",
+    let resp = await axios.get("https://icanhazdadjoke.com/", {
         headers: {
-            Accept: "application/JSON",
+            "Accept": "application/JSON",
             "User-Agent" : "My library: https://github.com/leftykilla/capstone1"
         }
     })
@@ -22,11 +19,7 @@ async function handleJoke() {
 
 async function handleDog() {
     /** Send a get request to specific api, handle response, and display data */
-
-    let resp = await axios({
-        url: "https://dog.ceo/api/breeds/image/random",
-        method: "GET"
-    })
+    let resp = await axios.get("https://dog.ceo/api/breeds/image/random")
 
     let dogPic = resp.data.message
     $("#dog-data").append(`<div><img src=${dogPic}></div>`)
@@ -34,20 +27,26 @@ async function handleDog() {
 
 async function handleCat() {
     /** Send a get request to specific api, handle response, and display data */
-
-    let resp = await axios({
-        url: "https://api.thecatapi.com/v1/images/search?limit=1",
-        method: "GET",
+    let resp = await axios.get("https://api.thecatapi.com/v1/images/search?limit=1",{
         headers: {
             "x-api-key": API_KEY
-        }
-    })
-    catPic = resp.data.url
+        }})
+    let catPic = resp.data[0].url
+
     $("#cat-data").append(`<div><img src=${catPic}></div>`)
 
     
 }
 
-jokeButton.on("click", handleJoke)
-dogButton.on("click", handleDog)
-catButton.on("click", handleCat)
+$("#joke").on("click", async function(evt) {
+    evt.preventDefault()
+    await handleJoke()
+})
+$("#dog").on("click", async function(evt) {
+    evt.preventDefault()
+    await handleDog()
+})
+$("#cat").on("click", async function (evt) {
+    evt.preventDefault()
+    await handleCat()
+})
