@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField
-from wtforms.validators import DataRequired, Email, Length
+from wtforms import StringField, PasswordField, 
+from wtforms.validators import DataRequired, Length, Optional
 
 
 class UserAddForm(FlaskForm):
@@ -20,5 +20,5 @@ class LoginForm(FlaskForm):
 class LocalReferralForm(FlaskForm):
     """Form for looking up local referrals"""
 
-    county = StringField('County')
-    zip_code = StringField('Zip Code')
+    county = StringField('County', validators=[Optional()])
+    zip_code = StringField('Zip Code', validators=[Optional()])

@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 
 from crisis_program import crisis, Crisis_Program
-from crisis_models import db, crisis_connect_db
+from crisis_models import db, crisis_connect_db, Mental_Health_Center
 from social_models import db, social_connect_db
 
 CURR_USER_KEY = "curr_user"
@@ -25,6 +25,7 @@ toolbar = DebugToolbarExtension(app)
 crisis_connect_db(app)
 social_connect_db(app)
 program = Crisis_Program()
+mhc = Mental_Health_Center()
 ########################## Login/logout/register routes ###############################
 
 def do_login(user):
@@ -220,8 +221,14 @@ def crisis_referral_page():
     form = LocalReferralForm()
 
     if form.validate_on_submit():
+        if form.county.data:
+            msg = mhc.refer_by_county(form.county.data)
+            return msg
+        if form.zip_code.data:
+            msg = 
+            return msg
         
         return redirect("crisis/referrals")
 
 
-    return render_template("crisis_referral.html")
+    return render_template("crisis_referral.html", form=form)

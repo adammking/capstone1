@@ -51,6 +51,7 @@ class County(db.Model):
         db.ForeignKey('mhcs.id', ondelete='CASCADE')
     )
 
+
 class Mental_Health_Center(db.Model):
     """An individual mental health center (MHC)."""
 
@@ -85,6 +86,17 @@ class Mental_Health_Center(db.Model):
     states = db.relationship('State', backref='mhcs')
 
     counties = db.relationship('County', backref='mhcs')
+
+    def refer_by_county(county):
+        counties = County.query.all()
+
+        if county in counties:
+            msg = (county, county.counties.name, county.counties.crisis_number)
+        else:
+            msg= f"{county} not in Texas. Please utilize national referrals"
+
+        return msg
+
 
 
 class Zip_Code(db.Model):
