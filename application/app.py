@@ -92,11 +92,12 @@ def login():
         if user:
             do_login(user)
             flash(f"Hello, {user.username}!", "success")
-            return redirect("/")
+            return redirect("/users")
 
         flash("Invalid credentials.", 'danger')
 
-    return render_template('users/login.html', form=form)
+    return render_template('/users/login.html', form=form)
+
 
 
 @app.route('/logout')
@@ -108,26 +109,42 @@ def logout():
     flash("You have successfully logged out.", 'success')
     return redirect("/login")
 
+
+@app.route('/')
+def welcome_page():
+    return render_template('welcome.html')
+
 ######################################### User profile/community routes #############################
 
 
 @app.route('/users')
 def list_users():
+    if CURR_USER_KEY in session:
+        users = User.query.all()
 
-    users = User.query.all()
+        return render_template('/users/index.html', users=users)
 
-    return render_template('users/index.html', users=users)
-
+    return redirect("/login")
 
 
 @app.route('/users/<user_id>')
 def show_user_profile():
-    return render_template('users/index.html')
+    if CURR_USER_KEY in session:
+
+        return render_template('/users/index.html')
+
+    return redirect("/login")
+
 
 
 @app.route('/users/posts')
 def show_user_posts():
-    return render_template('users/index.html')
+    if CURR_USER_KEY in session:
+
+        return render_template('/users/index.html')
+
+    return redirect("/login")
+
 
 
 
@@ -182,10 +199,7 @@ def crisis_questions(question_num):
 
     if len(session["responses"]) is None:
         return redirect("/crisis/start")
-
-    if len(session["responses"]) == len(crisis.questions):
-        flash("Survey Complete")
-        return redirect("/thanks")
+        
 
     if len(session["responses"]) != question_num:
         flash("Question Error, Returned to Current Question")
