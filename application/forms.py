@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField 
+from wtforms import StringField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Length, Optional
 
 
@@ -22,5 +22,5 @@ class LoginForm(FlaskForm):
 class LocalReferralForm(FlaskForm):
     """Form for looking up local referrals"""
 
-    county = StringField('County', validators=[Optional()])
-    zip_code = StringField('Zip Code', validators=[Optional()])
+    county = SelectField('County', validators=[Optional()])
+    zip_code = StringField('Zip Code', validators=[Length(max=5), Optional()])

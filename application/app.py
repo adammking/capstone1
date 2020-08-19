@@ -5,7 +5,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
 from crisis_program import crisis, Crisis_Program
-from crisis_models import db, crisis_connect_db, Mental_Health_Center
+from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
 from social_models import db, social_connect_db, User, Likes 
 from forms import UserAddForm, LoginForm, LocalReferralForm
 
@@ -231,18 +231,23 @@ def track_crisis_answers():
     return redirect(f"/crisis/questions/{len(session['responses'])}")
 
 
-@app.route('/crisis/referrals', methods=["GET", "POST"])
+@app.route('/crisis/referrals')
 def crisis_referral_page():
 
     form = LocalReferralForm()
 
+    counties = [(c.id, c.name) for c in County.query.all()]
+    form.county.choices = counties
+
     if form.validate_on_submit():
-        if form.county.data:
-            msg = mhc.refer_by_county(form.county.data)
-            return msg
+        county = form.county.data
+        zip_code = form.zip_code.data
         
-        
-        return redirect("/crisis/referrals")
+        mhc_county = County.query.get(county)
+        mhc_zip = Zip_Code.query.filter(Zip_Code.name == zip_code).one()
+
+        raise
+        return render_template("/crisis/referrals", form=form, mhc_county=mhc_county, mhc_zip=mhc_zip)
 
 
     return render_template("/crisis/referrals.html", form=form)
