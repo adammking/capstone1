@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from crisis_program import crisis, Crisis_Program
 from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
 from social_models import db, social_connect_db, User, Likes 
-from forms import UserAddForm, LoginForm, CountyReferralForm, ZipReferralForm
+from forms import UserAddForm, LoginForm
 
 CURR_USER_KEY = "curr_user"
 
@@ -234,22 +234,28 @@ def track_crisis_answers():
 @app.route('/crisis/referrals')
 def crisis_referral_page():
     """Needs work"""
-    county_form = CountyReferralForm()
-    zip_form = ZipReferralForm()
+
+
     
-    counties = [(c.id, c.name) for c in County.query.all()]
+    return render_template("/crisis/referrals.html")
+
+
+@app.route('/crisis/referrals', methods=["POST"])
+def crisis_handle_referral():
+
+     counties = [(c.id, c.name) for c in County.query.all()]
     county_form.county.choices = counties
 
     if county_form.validate_on_submit() or zip_form.validate_on_submit():
         if county_form.county.data:
             county = county_form.county.data
-            mhc_county = County.query.get(county) 
+            mhc_county = County.query.get(county)
         if zip_form.zip_code.data:
             zip_code = zip_form.zip_code.data
             mhc_zip = Zip_Code.query.filter(Zip_Code.name == zip_code).one()
-        return render_template("/crisis/referrals.html", zip_form=zip_form, county_form=county_form, mhc_zip=mhc_zip, mhc_county=mhc_county)
-    return render_template("/crisis/referrals.html", zip_form=zip_form, county_form=county_form)
-
+    return render_template("/crisis/referrals.html", zip_form=zip_form, county_form=county_form, mhc_zip=mhc_zip, mhc_county=mhc_county)
+ 
+   
 @app.route('/crisis/coping')
 def crisis_coping_skills():
 

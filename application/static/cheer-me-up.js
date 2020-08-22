@@ -1,4 +1,4 @@
-import * as API_KEY from '/static/api-key.js';
+
 let jokeButton = $("#joke")
 let dogButton = $("#dog")
 let catButton = $("#cat")
@@ -8,8 +8,7 @@ async function handleJoke() {
     /** Send a get request to specific api, handle response, and display data */
     let resp = await axios.get("https://icanhazdadjoke.com/", {
         headers: {
-            "Accept": "application/JSON",
-            "User-Agent" : "My library: https://github.com/leftykilla/capstone1"
+            "Accept": "application/JSON"
         }
     })
     let joke = resp.data.joke
@@ -27,10 +26,7 @@ async function handleDog() {
 
 async function handleCat() {
     /** Send a get request to specific api, handle response, and display data */
-    let resp = await axios.get("https://api.thecatapi.com/v1/images/search?limit=1",{
-        headers: {
-            "x-api-key": API_KEY
-        }})
+    let resp = await axios.get("https://api.thecatapi.com/v1/images/search")
     let catPic = resp.data[0].url
 
     $("#cat-data").append(`<div><img src=${catPic}></div>`)
