@@ -19,4 +19,13 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[Length(min=6)])
 
 
+class CountyReferralForm(FlaskForm):
+    """Form for looking up local referrals"""
 
+    county = SelectField('County', validators=[Optional()])
+
+
+class ZipReferralForm(FlaskForm):
+    """Form for looking up local referrals"""
+
+    zip_code = StringField('Zip Code', validators=[Length(max=5), Optional()])

@@ -243,7 +243,7 @@ def crisis_referral_page():
 @app.route('/crisis/referrals', methods=["POST"])
 def crisis_handle_referral():
 
-     counties = [(c.id, c.name) for c in County.query.all()]
+    counties = [(c.id, c.name) for c in County.query.all()]
     county_form.county.choices = counties
 
     if county_form.validate_on_submit() or zip_form.validate_on_submit():
