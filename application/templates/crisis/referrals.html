@@ -6,31 +6,18 @@
 
 <div class="row justify-content-md-center">
     <div class="col-md-7 col-lg-5">
-        <form id="local_form">
-            {{ county_form.hidden_tag() }}
-
-            {% for field in county_form if field.widget.input_type != 'hidden' %}
-            {% for error in field.errors %}
-            <span class="text-danger">{{ error }}</span>
-            {% endfor %}
-            {{ field(placeholder=field.label.text, class="form-control") }}
-            {% endfor %}
+        <form action="/crisis/referrals/" id="county_form">
+            <input id="county" name="county" placeholder="Enter County" class="form-control">
             <button class="btn btn-primary btn-block btn-lg">Search</button>
         </form>
     </div>
 </div>
-<h1>Or</h1>
+
 <div class="row justify-content-md-center">
     <div class="col-md-7 col-lg-5">
-        <form id="local_form">
-            {{ zip_form.hidden_tag() }}
-
-            {% for field in zip_form if field.widget.input_type != 'hidden' %}
-            {% for error in field.errors %}
-            <span class="text-danger">{{ error }}</span>
-            {% endfor %}
-            {{ field(placeholder=field.label.text, class="form-control") }}
-            {% endfor %}
+        <h1>Or</h1>
+        <form action="/crisis/referrals/" id="zip_form">
+            <input id="zip" name="zip" placeholder="Enter Zip" class="form-control">
             <button class="btn btn-primary btn-block btn-lg">Search</button>
         </form>
     </div>
@@ -38,18 +25,18 @@
 
 
 
-{%if mhc_zip %}
+{%if zip %}
 <div>
-    {{mhc_zip.name}}
-    {{mhc_zip.mhcs[0].crisis_line}}
-    {{mhc_zip.mhcs[0].website}}
-    {{mhc_zip.mhcs[0].name}}
+    {{zip.name}}
+    {{zip.mhcs[0].crisis_line}}
+    {{zip.mhcs[0].website}}
+    {{zip.mhcs[0].name}}
 </div>
 {% endif %}
 
-{% if mhc_county %}
+{% if county %}
 <div>
-    {{mhc_county}}
+    {{county}}
 </div>
 {% endif %}
 

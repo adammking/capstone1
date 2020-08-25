@@ -114,3 +114,5 @@ class Zip_Code(db.Model):
     )
 
     zip_counties = db.relationship('County', backref='zip_codes')
+
+    
