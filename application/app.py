@@ -128,7 +128,7 @@ def list_users():
 
 
 @app.route('/users/<user_id>')
-def show_user_profile():
+def show_user_profile(user_id):
     if CURR_USER_KEY in session:
 
         return render_template('/users/index.html')
@@ -245,9 +245,10 @@ def crisis_referral_page():
 
 
 
-@app.route('/crisis/referrals/<int:county_id>)')
-def crisis_handle_county(county_id):
-    county = County.query.get(county_id)
+@app.route('/crisis/referrals/county')
+def crisis_handle_county():
+    county_name = request.args.get("county")
+    county = County.query.filter(County.name.like(f"%{county_name}%")).first()
 
     county_form = CountyReferralForm()
     zip_form = ZipReferralForm()
@@ -259,8 +260,9 @@ def crisis_handle_county(county_id):
     return render_template("/crisis/referrals.html", zip_form=zip_form, county_form=county_form, county=county)
 
 
-@app.route('/crisis/referrals/<int:zip_code>)')
-def crisis_handle_zip(zip_code):
+@app.route('/crisis/referrals/zip')
+def crisis_handle_zip():
+    zip_code = request.args.get("zip")
     zip = Zip_Code.query.filter(Zip_Code.name == zip_code).one()
 
     county_form = CountyReferralForm()
