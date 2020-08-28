@@ -67,7 +67,6 @@ class User(db.Model):
 
     posts = db.relationship('Post', secondary='likes', backref='users')
 
-    skills = db.relationship('Skill', backref='users')
 
     def is_followed_by(self, other_user):
         """Is this user followed by `other_user`?"""
@@ -145,30 +144,6 @@ class Post(db.Model):
         nullable=False,
     )
 
-class Skill(db.Model):
-    """An individual skill."""
-
-    __tablename__ = 'skills'
-
-    id = db.Column(
-        db.Integer,
-        primary_key=True,
-    )
-
-    name = db.Column(
-        db.Text,
-        nullable=False,
-    )
-
-    approach = db.Column(
-        db.Text,
-        nullable=False,
-    )
-
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey('users.id', ondelete='CASCADE')
-    )
     
 
 class Likes(db.Model):

@@ -29,3 +29,11 @@ class ZipReferralForm(FlaskForm):
     """Form for looking up local referrals"""
 
     zip_code = StringField('Zip Code', validators=[Length(max=5), Optional()])
+
+
+class PostAddForm(FlaskForm):
+    """Form for adding users."""
+
+    title = StringField('Title', validators=[DataRequired()])
+    body = PasswordField('Body', validators=[DataRequired()])
+    

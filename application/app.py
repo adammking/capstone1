@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from crisis_program import crisis, Crisis_Program
 from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
 from social_models import db, social_connect_db, User, Likes 
-from forms import UserAddForm, LoginForm, CountyReferralForm, ZipReferralForm
+from forms import UserAddForm, LoginForm, CountyReferralForm, ZipReferralForm, PostAddForm
 
 CURR_USER_KEY = "curr_user"
 
@@ -29,6 +29,17 @@ social_connect_db(app)
 program = Crisis_Program
 mhc = Mental_Health_Center()
 ########################## Login/logout/register routes ###############################
+
+
+@app.before_request
+def add_user_to_g():
+    """If we're logged in, add curr user to Flask global."""
+
+    if CURR_USER_KEY in session:
+        g.user = User.query.get(session[CURR_USER_KEY])
+
+    else:
+        g.user = None
 
 def do_login(user):
     """Log in user."""
@@ -73,7 +84,7 @@ def signup():
 
         do_login(user)
 
-        return redirect("/")
+        return redirect("/users")
 
     else:
         return render_template('users/signup.html', form=form)
@@ -119,32 +130,55 @@ def welcome_page():
 
 @app.route('/users')
 def list_users():
-    if CURR_USER_KEY in session:
-        users = User.query.all()
+    
 
-        return render_template('/users/index.html', users=users)
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
 
-    return redirect("/login")
+    users = User.query.all()
+
+    return render_template('/users/index.html', users=users)
+
 
 
 @app.route('/users/<user_id>')
 def show_user_profile(user_id):
-    if CURR_USER_KEY in session:
 
-        return render_template('/users/index.html')
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
 
-    return redirect("/login")
+    posts = Post.query.all()
+
+    user = User.query.get(user_id)
+
+    return render_template('/users/profile.html', posts=posts, user=user)
 
 
 
-@app.route('/users/posts')
+
+@app.route('/users/posts', methods=["GET", "POST"])
 def show_user_posts():
-    if CURR_USER_KEY in session:
 
-        return render_template('/users/index.html')
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
 
-    return redirect("/login")
+    form = PostAddForm()
 
+    if form.validate_on_submit(): 
+        Post(
+            title = form.title.data,
+            body = form.body.data,
+            user_id = g.user.id
+        )
+
+        db.session.add()
+        db.session.commit()
+        return redirect(f"/users/{g.user.id}")
+
+    return render_template('/users/post.html', form=form)
 
 
 
