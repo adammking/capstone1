@@ -68,6 +68,7 @@ class User(db.Model):
     posts = db.relationship('Post', secondary='likes', backref='users')
 
 
+
     def is_followed_by(self, other_user):
         """Is this user followed by `other_user`?"""
 

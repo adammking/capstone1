@@ -1,4 +1,5 @@
-from crisis_models import Zip_Code, Mental_Health_Center, State, County, db
+from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
+from social_models import db, social_connect_db, User, Likes, Follows
 from app import app
 
 
