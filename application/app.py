@@ -142,7 +142,7 @@ def list_users():
 
 @app.route('/users/<user_id>')
 def show_user_profile(user_id):
-    
+
     if not g.user:
         flash("Access unauthorized.", "danger")
         return redirect("/")
@@ -179,7 +179,7 @@ def show_user_posts():
     return render_template('/users/post.html', form=form)
 
 
-@app.route('/users/<int:user_id>/following')
+"""@app.route('/users/<int:user_id>/following')
 def show_following(user_id):
     """Show list of people this user is following."""
 
@@ -271,7 +271,7 @@ def delete_user():
     db.session.delete(g.user)
     db.session.commit()
 
-    return redirect("/signup")
+    return redirect("/signup")"""
 
 
 
