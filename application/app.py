@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from crisis_program import crisis, Crisis_Program
 from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
 from social_models import db, social_connect_db, User, Likes, Follows, Post
-from forms import UserAddForm, LoginForm, CountyReferralForm, ZipReferralForm, PostAddForm
+from forms import UserAddForm, LoginForm, CountyReferralForm, ZipReferralForm, PostAddForm, UserEditForm
 
 CURR_USER_KEY = "curr_user"
 
@@ -179,7 +179,7 @@ def show_user_posts():
     return render_template('/users/post.html', form=form)
 
 
-"""@app.route('/users/<int:user_id>/following')
+@app.route('/users/<int:user_id>/following')
 def show_following(user_id):
     """Show list of people this user is following."""
 
@@ -271,7 +271,7 @@ def delete_user():
     db.session.delete(g.user)
     db.session.commit()
 
-    return redirect("/signup")"""
+    return redirect("/signup")
 
 
 

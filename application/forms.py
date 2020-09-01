@@ -37,3 +37,8 @@ class PostAddForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     body = PasswordField('Body', validators=[DataRequired()])
     
+
+class UserEditForm(FlaskForm):
+    """Form for adding users."""
+
+    username = StringField('Username', validators=[DataRequired()])
