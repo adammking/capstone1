@@ -166,13 +166,13 @@ def show_user_posts():
     form = PostAddForm()
 
     if form.validate_on_submit(): 
-        Post(
+        post = Post(
             title = form.title.data,
             body = form.body.data,
             user_id = g.user.id
         )
 
-        db.session.add()
+        db.session.add(post)
         db.session.commit()
         return redirect(f"/users/{g.user.id}")
 
