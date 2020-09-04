@@ -13,7 +13,7 @@
         <div class="row">
 
             {% for user in users %}
-
+            {% if user != g.user%}
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="card user-card">
                     <div class="card-inner">
@@ -31,6 +31,7 @@
                             <form method="POST" action="/users/follow/{{ user.id }}">
                                 <button class="btn btn-outline-primary btn-sm">Follow</button>
                             </form>
+                            {% endif %}
                             {% endif %}
                             {% endif %}
                         </div>

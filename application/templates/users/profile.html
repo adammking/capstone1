@@ -8,20 +8,58 @@
     </div>
 </div>
 
-{% for post in posts %}
-
-    {% if g.user %}
-    {% if post.user_id == user.id %}
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{post.title}}</h5>
-            <p class="card-text">{{post.body}}</p>
+<div class="row full-width">
+    <div class="container">
+        <div class="row justify-content-start">
+            <div class="col-9">
+                <ul class="user-stats nav nav-pills">
+                    <li class="stat">
+                        <h4>
+                            <a href="/users/posts">{{ user.posts | length }}</a>
+                        </h4>
+                        <p class="small">Posts</p>
+                    </li>
+                    <li class="stat">
+                        <h4>
+                            <a href="/users/{{ user.id }}/following">{{ user.following | length }}</a>
+                        </h4>
+                        <p class="small">Following</p>
+                    </li>
+                    <li class="stat">
+                        <h4>
+                            <a href="/users/{{ user.id }}/followers">{{ user.followers | length }}</a>
+                        </h4>
+                        <p class="small">Followers</p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
+    <div>
+        {% if g.user.id == user.id %}
+        <a href="/users/profile"><button class="btn btn-primary">Edit Profile</button></a>
+        <form action="/users/delete" method="POST">
+            <button class="btn btn-danger">Delete Profile</button>
+        </form>
+        <a href="/logout"><button class="btn btn-danger">Logout</button></a>
+        {% endif %}
+    </div>
 
-    {% endif %}
-    {% endif %}
-{% endfor %}
-
+    <div class="container justify-content-start">
+        {% for post in posts %}
+    
+        {% if g.user %}
+        {% if post.user_id == user.id %}
+    
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{post.body}}</p>
+            </div>
+        </div>
+    
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
 {% endblock %}

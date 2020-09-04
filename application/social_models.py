@@ -65,7 +65,7 @@ class User(db.Model):
     )
 
 
-    posts = db.relationship('Post', secondary='likes', backref='users')
+    posts = db.relationship('Post', backref='users')
 
 
 
@@ -118,6 +118,17 @@ class User(db.Model):
                 return user
 
         return False
+    
+    @classmethod
+    def username_authenticate(cls, username):
+        """Make sure username is not taken"""
+
+        user = cls.query.filter_by(username=username).first()
+
+        if not user:
+            return True
+        else:
+            return False
 
 class Post(db.Model):
     """An individual post."""
@@ -142,7 +153,7 @@ class Post(db.Model):
     user_id = db.Column(
         db.Integer,
         db.ForeignKey('users.id', ondelete='CASCADE'),
-        nullable=False,
+        
     )
 
     

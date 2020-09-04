@@ -212,8 +212,9 @@ def add_follow(follow_id):
         return redirect("/")
 
     followed_user = User.query.get_or_404(follow_id)
-    g.user.following.append(followed_user)
-    db.session.commit()
+    if followed_user != g.user:
+        g.user.following.append(followed_user)
+        db.session.commit()
 
     return redirect(f"/users/{g.user.id}/following")
 
@@ -246,14 +247,13 @@ def change_username():
     form = UserEditForm(obj=user)
 
     if form.validate_on_submit():
-        if User.authenticate(form.username.data,
-                             form.password.data):
+        if User.username_authenticate(form.username.data):
             user.username = form.username.data
             db.session.commit()
 
             return redirect(f"/users/{user.id}")
 
-        flash("Invalid Password", "danger")
+        flash("Username Not Available", "danger")
 
     return render_template('users/edit.html', form=form, user=user)
 
