@@ -347,7 +347,7 @@ def track_crisis_answers():
     responses = session["responses"]
     responses.append(answer)
     session["responses"] = responses
-
+    
     if len(session["responses"]) == len(crisis.questions):
         crisis_score = program.calculate_score(responses)
         if crisis_score == 0:

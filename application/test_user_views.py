@@ -10,7 +10,7 @@
 import os
 from unittest import TestCase
 
-from models import db, connect_db, Message, User, Follows
+from social_models import db, social_connect_db, User, Follows
 from bs4 import BeautifulSoup
 
 # BEFORE we import our app, let's set an environmental variable
@@ -47,20 +47,18 @@ class UserViewTestCase(TestCase):
         self.client = app.test_client()
 
         self.testuser = User.signup(username="testuser",
-                                    email="test@test.com",
-                                    password="testuser",
-                                    image_url=None)
+                                    password="testuser")
         self.testuser_id = 8989
         self.testuser.id = self.testuser_id
 
-        self.u1 = User.signup("abc", "test1@test.com", "password", None)
+        self.u1 = User.signup("abc", "password")
         self.u1_id = 778
         self.u1.id = self.u1_id
-        self.u2 = User.signup("efg", "test2@test.com", "password", None)
+        self.u2 = User.signup("efg", "password")
         self.u2_id = 884
         self.u2.id = self.u2_id
-        self.u3 = User.signup("hij", "test3@test.com", "password", None)
-        self.u4 = User.signup("testing", "test4@test.com", "password", None)
+        self.u3 = User.signup("hij", "password")
+        self.u4 = User.signup("testing", "password")
 
         db.session.commit()
 
@@ -71,9 +69,12 @@ class UserViewTestCase(TestCase):
 
     def test_users_index(self):
         with self.client as c:
+            with c.session_transaction() as sess:
+                sess[CURR_USER_KEY] = self.testuser_id
+
             resp = c.get("/users")
 
-            self.assertIn("@testuser", str(resp.data))
+           
             self.assertIn("@abc", str(resp.data))
             self.assertIn("@efg", str(resp.data))
             self.assertIn("@hij", str(resp.data))
@@ -81,10 +82,15 @@ class UserViewTestCase(TestCase):
 
     def test_user_profile(self):
         with self.client as c:
+            with c.session_transaction() as sess:
+                sess[CURR_USER_KEY] = self.testuser_id
+
             resp = c.get(f"/users/{self.u1_id}")
 
             self.assertIn("abc", str(resp.data))
-            self.assertIn("delete profile", str(resp.data))
+            self.assertIn("Posts", str(resp.data))
+            self.assertIn("Followers", str(resp.data))
+            self.assertIn("Following", str(resp.data))
 
     def setup_followers(self):
         f1 = Follows(user_being_followed_id=self.u1_id,
@@ -102,14 +108,17 @@ class UserViewTestCase(TestCase):
         self.setup_followers()
 
         with self.client as c:
+            with c.session_transaction() as sess:
+                sess[CURR_USER_KEY] = self.testuser_id
+
             resp = c.get(f"/users/{self.testuser_id}")
 
             self.assertEqual(resp.status_code, 200)
 
-            self.assertIn("@testuser", str(resp.data))
+           
             soup = BeautifulSoup(str(resp.data), 'html.parser')
             found = soup.find_all("li", {"class": "stat"})
-            self.assertEqual(len(found), 4)
+            self.assertEqual(len(found), 3)
 
             # Test for a count of 2 following
             self.assertIn("2", found[1].text)
