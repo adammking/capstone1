@@ -12,6 +12,7 @@ async function handleJoke() {
         }
     })
     let joke = resp.data.joke
+    $("#joke-data").empty()
     $("#joke-data").append(`<h1>${joke}</h1>`)
 }
 
@@ -21,6 +22,7 @@ async function handleDog() {
     let resp = await axios.get("https://dog.ceo/api/breeds/image/random")
 
     let dogPic = resp.data.message
+    $("#dog-data").empty()
     $("#dog-data").append(`<div><img src=${dogPic}></div>`)
 }
 
@@ -28,7 +30,7 @@ async function handleCat() {
     /** Send a get request to specific api, handle response, and display data */
     let resp = await axios.get("https://api.thecatapi.com/v1/images/search")
     let catPic = resp.data[0].url
-
+    $("#cat-data").empty()
     $("#cat-data").append(`<div><img src=${catPic}></div>`)
 
     
