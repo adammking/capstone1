@@ -2,7 +2,7 @@
 {% block title %} Crisis Referrals {% endblock %}
 {% block content %}
 
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center mt-2">
     <h2>Local Referral Search</h2>
 
 </div>
@@ -12,17 +12,20 @@
 <div class="row justify-content-md-center">
     <div class="col-md-7 col-lg-5">
         <form action="/crisis/referrals/county" id="county_form">
-            <input id="county" name="county" placeholder="Enter County" class="form-control">
+            <input id="county" name="county" placeholder="Enter County" class="form-control mb-2">
             <button class="btn btn-primary btn-block btn-lg">Search</button>
-        </form>
+        </form> 
     </div>
 </div>
 
 <div class="row justify-content-md-center">
     <div class="col-md-7 col-lg-5">
-        <h1>Or</h1>
+        <div class="d-flex justify-content-center mt-2">
+            <h2>Or</h2>
+        </div>
+        
         <form action="/crisis/referrals/zip" id="zip_form">
-            <input id="zip" name="zip" placeholder="Enter Zip" class="form-control">
+            <input id="zip" name="zip" placeholder="Enter Zip" class="form-control mb-2">
             <button class="btn btn-primary btn-block btn-lg">Search</button>
         </form>
     </div>
@@ -31,20 +34,28 @@
 
 
 {%if zip %}
-<div>
-    {{zip.name}}
-    {{zip.mhcs[0].crisis_line}}
-    {{zip.mhcs[0].website}}
-    {{zip.mhcs[0].name}}
+<div class="d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{zip.mhcs[0].name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Zip Code: {{zip.name}} </h6>
+            <p class="card-text">Crisis Number: {{zip.mhcs[0].crisis_line}}</p>
+            <a href="{{zip.mhcs[0].website}}" class="btn btn-primary">Website</a>
+        </div>
+    </div>
 </div>
 {% endif %}
 
 {% if county %}
-<div>
-    {{county.name}}
-    {{county.mhcs.crisis_line}}
-    {{county.mhcs.website}}
-    {{county.mhcs.name}}
+<div class="d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{county.mhcs.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">County: {{county.name}} </h6>
+            <p class="card-text">Crisis Number: {{county.mhcs.crisis_line}}</p>
+            <a href="{{county.mhcs.website}}" class="btn btn-primary">Website</a>
+        </div>
+    </div>
 </div>
 {% endif %}
 
