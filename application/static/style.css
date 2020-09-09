@@ -1,9 +1,15 @@
-.dog-data {
+#dog-data img{
     height: 200px;
     width: 300px; 
 }
 
-.cat-data {
+#cat-data img {
     height: 200px;
     width: 300px; 
 }
+
+#sky {
+    height: 75%s;
+    width: 100%;
+}
+
