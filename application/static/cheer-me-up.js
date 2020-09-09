@@ -13,7 +13,7 @@ async function handleJoke() {
     })
     let joke = resp.data.joke
     $("#joke-data").empty()
-    $("#joke-data").append(`<h1>${joke}</h1>`)
+    $("#joke-data").append(`<div class="jumbotron border border-dark"><h2>${joke}</h2></div>`)
 }
 
 
@@ -23,7 +23,7 @@ async function handleDog() {
 
     let dogPic = resp.data.message
     $("#dog-data").empty()
-    $("#dog-data").append(`<div><img src=${dogPic}></div>`)
+    $("#dog-data").append(`<div class="border border-dark"><img src=${dogPic}></div>`)
 }
 
 async function handleCat() {
@@ -31,7 +31,7 @@ async function handleCat() {
     let resp = await axios.get("https://api.thecatapi.com/v1/images/search")
     let catPic = resp.data[0].url
     $("#cat-data").empty()
-    $("#cat-data").append(`<div><img src=${catPic}></div>`)
+    $("#cat-data").append(`<div class="border border-dark"><img src=${catPic}></div>`)
 
     
 }

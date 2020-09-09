@@ -5,15 +5,21 @@
 
 
 {% block content %}
-
+<div class="jumbotron mt-4">
+    <div class="container">
 <h1>{{question}}</h1>
 
-<form action="/crisis/answers" method="POST">
+        
+    <form action="/crisis/answers" method="POST">
+    <div class="custom-control custom-radio custom-control-inline"></div>
     {% for itm in choices %}
-    <input id="choice" type="radio" name="answer" value="{{itm}}">{{itm}}</input>
+    <input class="mx-2" id="choice" type="radio" name="answer" value="{{itm}}">{{itm}}</input>
     {% endfor %}
-    <button>Submit</button>
+    <div class="d-flex justify-content-end">
+    <button class="btn btn-primary">Submit</button>
+    </div>
 </form>
+</div>
+</div>
 
-
-{% endblock %}
+{% endblock %} 
