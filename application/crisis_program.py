@@ -51,7 +51,7 @@ crisis = Crisis_Program(
     [
     Question("Are you currently having suicidal thoughts or thinking about killing yourself?"),
     Question("Are you currently having homicidal thoughts or thinking about killing someone else (Stranger, Friend, Family Member)?"),
-    Question("Are you currently hallucinating?")
+    Question("Are you currently hallucinating? (Hearing or seeing things when alone)")
     ]
 )
 

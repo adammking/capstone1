@@ -2,9 +2,7 @@
 {% block title %} Welcome {% endblock %}
 {% block content %}
 
-<p>
-    User Index
-</p>
+
 {% if users|length <= 1 %}
 <h3>Sorry, no other users yet</h3>
 {% else %}
@@ -18,7 +16,7 @@
             
             {% if user != g.user %}
             <div class="col-lg-4 col-md-6 col-12">
-                <div class="card user-card">
+                <div class="card user-card shadow border border-dark">
                     <div class="card-inner">
                         <div class="card-contents">
                             <a href="/users/{{ user.id }}" class="card-link">

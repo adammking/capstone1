@@ -3,10 +3,13 @@
 {% block content %}
 <div class="container">
 <div class="row">
-    <div class="col-4">
-<div class="card shadow-sm mt-3" style="width: 18rem;">
+    <div class="col-lg-4 col-md-6 col-12">
+<div class="card border border-dark shadow-sm mt-3" style="width: 18rem;">
     <div class="card-body">
-        <h5 class="card-title">{{user.username}}</h5>
+        <h3 class="card-title">{{user.username}}</h3>
+        {% if g.user.id == user.id %}
+        <a href="/users/profile"><button class="btn btn-outline-warning  btn-sm">Edit Username</button></a>
+        {% endif %}
     </div>
 </div>
 
@@ -39,20 +42,20 @@
     </div>
     <div>
         {% if g.user.id == user.id %}
-        <table class="table table-dark">
-            <tr>
-                <td><a href="/users/profile"><button class="btn btn-primary">Edit Username</button></a></td>
-            </tr>
+        <table class="table table-dark ml-3">
+            <th>
+                User Control Panel
+            </th>
                 <tr>
                     <td>
                         <form action="/users/delete" method="POST">
-                            <button class="btn btn-danger">Delete Profile</button>
+                            <button class="btn btn-outline-danger">Delete Profile</button>
                         </form>
                     </td>
                 </tr>   
                 <tr>
                     <td>
-                        <a href="/logout"><button class="btn btn-danger">Logout</button></a>
+                        <a href="/logout"><button class="btn btn-outline-danger">Logout</button></a>
                     </td>
                 </tr>
         </table>
@@ -62,20 +65,22 @@
 </div>
 
 
-    <div class="col-4  mt-3">
+    <div class="col-lg-4 col-md-6 col-12  mt-3">
         
     <div class="container justify-content-start">
         <h3>My Posts</h3>
-        {% if posts | length == 0 %}
-            <h2>No Posts Yet</h2>
+        
+        {% if user.posts|length == 0 %}
+            <h3>No Posts Yet</h3>
         {% else %}
         
             {% for post in posts %}
+            
     
             {% if g.user %}
             {% if post.user_id == user.id %}
     
-            <div class="card shadow mb-5" style="width: 18rem;">
+            <div class="card border border-dark shadow mb-5" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{post.title}}</h5>
                     <p class="card-text">{{post.body}}</p>
@@ -89,7 +94,7 @@
     </div>
     </div>
 
-    <div class="col-4 mt-3">
+    <div class="col-lg-4 col-md-6 col-12 mt-3">
     {% if user.following|length == 0 %}
         <h3>You are not following anyone</h3>
         <p>Check out other users <a href="/users">here</a></p>
@@ -97,7 +102,7 @@
 
         {% for followed_user in user.following %}
     
-        <div class="card user-card">
+        <div class="card user-card border border-dark shadow">
             <div class="card-inner">
                 <div class="card-contents">
                     <a href="/users/{{ followed_user.id }}" class="card-link">
