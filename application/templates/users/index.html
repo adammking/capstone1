@@ -5,14 +5,17 @@
 <p>
     User Index
 </p>
-{% if users|length == 0 %}
-<h3>Sorry, no users found</h3>
+{% if users|length <= 1 %}
+<h3>Sorry, no other users yet</h3>
 {% else %}
 <div class="row justify-content-end">
     <div class="col-sm-9">
         <div class="row">
 
+
+            
             {% for user in users %}
+            
             {% if user != g.user %}
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="card user-card">

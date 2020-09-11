@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% block title %} Profile Page {% endblock %}
 {% block content %}
-
-<div class="card" style="width: 18rem;">
+<div class="container">
+<div class="row">
+    <div class="col-4">
+<div class="card shadow-sm mt-3" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">{{user.username}}</h5>
     </div>
 </div>
 
 <div class="row full-width">
-    <div class="container">
+    <div class="container mt-2">
         <div class="row justify-content-start">
             <div class="col-9">
                 <ul class="user-stats nav nav-pills">
@@ -19,11 +21,11 @@
                         </h4>
                         <p class="small">Posts</p>
                     </li>
-                    <li class="stat">
+                    <li class="stat mx-2">
                         <h4>
                             <a href="/users/{{ user.id }}/following">{{ user.following | length }}</a>
                         </h4>
-                        <p class="small">Following</p>
+                        <p class="small ">Following</p>
                     </li>
                     <li class="stat">
                         <h4>
@@ -37,29 +39,90 @@
     </div>
     <div>
         {% if g.user.id == user.id %}
-        <a href="/users/profile"><button class="btn btn-primary">Edit Profile</button></a>
-        <form action="/users/delete" method="POST">
-            <button class="btn btn-danger">Delete Profile</button>
-        </form>
-        <a href="/logout"><button class="btn btn-danger">Logout</button></a>
+        <table class="table table-dark">
+            <tr>
+                <td><a href="/users/profile"><button class="btn btn-primary">Edit Username</button></a></td>
+            </tr>
+                <tr>
+                    <td>
+                        <form action="/users/delete" method="POST">
+                            <button class="btn btn-danger">Delete Profile</button>
+                        </form>
+                    </td>
+                </tr>   
+                <tr>
+                    <td>
+                        <a href="/logout"><button class="btn btn-danger">Logout</button></a>
+                    </td>
+                </tr>
+        </table>
         {% endif %}
+    </div>
+</div>
+</div>
+
+
+    <div class="col-4  mt-3">
+        
+    <div class="container justify-content-start">
+        <h3>My Posts</h3>
+        {% if posts | length == 0 %}
+            <h2>No Posts Yet</h2>
+        {% else %}
+        
+            {% for post in posts %}
+    
+            {% if g.user %}
+            {% if post.user_id == user.id %}
+    
+            <div class="card shadow mb-5" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.body}}</p>
+                </div>
+            </div>
+    
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
     </div>
 
-    <div class="container justify-content-start">
-        {% for post in posts %}
+    <div class="col-4 mt-3">
+    {% if user.following|length == 0 %}
+        <h3>You are not following anyone</h3>
+        <p>Check out other users <a href="/users">here</a></p>
+    {% else %}
+
+        {% for followed_user in user.following %}
     
-        {% if g.user %}
-        {% if post.user_id == user.id %}
+        <div class="card user-card">
+            <div class="card-inner">
+                <div class="card-contents">
+                    <a href="/users/{{ followed_user.id }}" class="card-link">
+                        <p>@{{ followed_user.username }}</p>
+                    </a>
+                    {% if g.user.is_following(followed_user) %}
+                        <form method="POST" action="/users/stop-following/{{ followed_user.id }}">
+                            <button class="btn btn-primary btn-sm">Unfollow</button>
+                        </form>
+                    {% else %}
+                        <form method="POST" action="/users/follow/{{ followed_user.id }}">
+                            <button class="btn btn-outline-primary btn-sm">Follow</button>
+                        </form>
+                    {% endif %}
     
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{post.title}}</h5>
-                <p class="card-text">{{post.body}}</p>
+                </div>
             </div>
         </div>
-    
-        {% endif %}
-        {% endif %}
         {% endfor %}
+    {% endif %}
     </div>
+
+
+
+</div>
+</div>
+
 {% endblock %}
