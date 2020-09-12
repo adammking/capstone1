@@ -10,23 +10,23 @@
 <div class="col-sm-9">
     <div class="row">
         <div class="col-lg-4 col-md-6 col-12">
-
+            <h2>My Followers</h2>
         {% for follower in user.followers %}
 
-            <div class="card user-card">
-                <div class="card-inner">
+            <div class="card user-cards my-2">
+                <div class="card-inner shadow border border-dark">
                     <div class="card-contents">
                         <a href="/users/{{ follower.id }}" class="card-link">
-                            <p>@{{ follower.username }}</p>
+                            <p class="ml-1">@{{ follower.username }}</p>
                         </a>
 
                         {% if g.user.is_following(follower) %}
                         <form method="POST" action="/users/stop-following/{{follower.id}}">
-                            <button class="btn btn-primary btn-sm">Unfollow</button>
+                            <button class="btn btn-dark btn-sm ml-1 mb-1">Unfollow</button>
                         </form>
                         {% else %}
                         <form method="POST" action="/users/follow/{{ follower.id }}">
-                            <button class="btn btn-outline-primary btn-sm">Follow</button>
+                            <button class="btn btn-outline-dark btn-sm ml-1 mb-1">Follow</button>
                         </form>
                         {% endif %}
                     </div>

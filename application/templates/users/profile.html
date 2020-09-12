@@ -68,10 +68,10 @@
     <div class="col-lg-4 col-md-6 col-12  mt-3">
         
     <div class="container justify-content-start">
-        <h3>My Posts</h3>
+        <h3>My Posts</h3> <a href="/users/posts"><button class="btn btn-dark btn-sm">Add post</button></a>
         
         {% if user.posts|length == 0 %}
-            <h3>No Posts Yet</h3>
+            <h3>No Posts Yet</h3> <a href="/users/posts"><button class="btn btn-dark btn-sm">Add post</button></a>
         {% else %}
         
             {% for post in posts %}
@@ -101,28 +101,31 @@
     {% else %}
 
         {% for followed_user in user.following %}
-    
-        <div class="card user-card border border-dark shadow">
+        
+        <div class="card user-card border border-dark shadow mt-3">
             <div class="card-inner">
                 <div class="card-contents">
                     <a href="/users/{{ followed_user.id }}" class="card-link">
-                        <p>@{{ followed_user.username }}</p>
+                        <p class="ml-1">@{{ followed_user.username }}</p>
                     </a>
                     {% if g.user.is_following(followed_user) %}
                         <form method="POST" action="/users/stop-following/{{ followed_user.id }}">
-                            <button class="btn btn-primary btn-sm">Unfollow</button>
+                            <button class="btn btn-dark btn-sm ml-1 mb-1">Unfollow</button>
                         </form>
                     {% else %}
                         <form method="POST" action="/users/follow/{{ followed_user.id }}">
-                            <button class="btn btn-outline-primary btn-sm">Follow</button>
+                            <button class="btn btn-outline-dark btn-sm ml-1 mb-1">Follow</button>
                         </form>
                     {% endif %}
     
                 </div>
             </div>
         </div>
+        
         {% endfor %}
+        <p class="mt-1">Follow more people <a href="/users">here</a></p>
     {% endif %}
+    
     </div>
 
 
