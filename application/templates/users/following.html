@@ -18,16 +18,18 @@
                 <div class="card-inner shadow border border-dark">
                     <div class="card-contents">
                         <a href="/users/{{ followed_user.id }}" class="card-link">
-                            <p class="ml-1">@{{ followed_user.username }}</p>
+                            <p class="ml-1">{{ followed_user.username }}</p>
                         </a>
+                        {% if followed_user != g.user %}
                         {% if g.user.is_following(followed_user) %}
                         <form method="POST" action="/users/stop-following/{{ followed_user.id }}">
                             <button class="btn btn-dark btn-sm ml-1 mb-1">Unfollow</button>
                         </form>
                         {% else %}
                         <form method="POST" action="/users/follow/{{ followed_user.id }}">
-                            <button class="btn btn-dark btn-sm ml-1 mb-1">Follow</button>
+                            <button class="btn btn-outline-dark btn-sm ml-1 mb-1">Follow</button>
                         </form>
+                        {% endif %}
                         {% endif %}
 
             </div>
