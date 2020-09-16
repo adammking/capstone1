@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %} Crisis Referrals {% endblock %}
+{% block content %}
+
+
+<div class="d-flex flex-column justify-content-center">
+    <div class="row justify-content-md-center mt-2">
+    <h2>National Hotline (USA) - 800-273-8255</h2>
+    <p>You've arrived at this page because you answered yes to one or more questions in the crisis program. 
+        If you're in the state of Texas, please utilize the local search to find the crisis line that covers your area and contact
+        the number to speak with a professional. If you're outside of Texas, please utilize the national suicide line for professional help.
+        Any number listed on this page is available 24 hours. If you need immediate help call 911.</p>
+    </div>
+    </div>
+
+
+
+<div class="d-flex flex-column">
+<div class="row justify-content-md-center mt-2">
+    <h2>Local Referral Search</h2>
+</div>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-7 col-lg-5">
+        <form action="/crisis/referrals/county" id="county_form">
+            <input id="county" name="county" placeholder="Enter County" class="form-control mb-2">
+            <button class="btn btn-dark btn-block btn-lg">Search</button>
+        </form> 
+    </div>
+</div>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-7 col-lg-5">
+        <div class="d-flex justify-content-center mt-2">
+            <h2>Or</h2>
+        </div>
+        
+        <form action="/crisis/referrals/zip" id="zip_form">
+            <input id="zip" name="zip" placeholder="Enter Zip" class="form-control mb-2">
+            <button class="btn btn-dark btn-block btn-lg">Search</button>
+        </form>
+    </div>
+</div>
+
+
+
+{%if zip %}
+<div class="d-flex justify-content-center">
+    <div class="card shadow border border-dark mt-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{zip.mhcs[0].name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Zip Code: {{zip.name}} </h6>
+            <p class="card-text">Crisis Number: {{zip.mhcs[0].crisis_line}}</p>
+            <a href="{{zip.mhcs[0].website}}" class="btn btn-dark">Website</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if county %}
+<div class="d-flex justify-content-center">
+    <div class="card shadow border border-dark mt-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{county.mhcs.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">County: {{county.name}} </h6>
+            <p class="card-text">Crisis Number: {{county.mhcs.crisis_line}}</p>
+            <a href="{{county.mhcs.website}}" class="btn btn-dark">Website</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+</div>
+
+{% endblock %}

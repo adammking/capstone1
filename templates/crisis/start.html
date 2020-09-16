@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} {% endblock %}
+{% block content %}
+
+
+
+
+
+    <div class="d-flex justify-content-center mt-2">
+        <h2>Crisis Program</h2>
+    </div>
+
+        <p>
+            <b>Notice:</b>
+            This program is meant as a referral source. These questions are meant to gauge current risk,
+            however, if you believe you will hurt yourself or someone else, or do not think you can remain safe.
+            <a href="/depression/referrals">Click Here</a> for helplines or call 911. For Texas residents who are willing to provide their county or zip code,
+            <a href="/crisis/referrals">Click Here</a> to see information about your local crisis line. 
+            Please answer the questions for how you currently feel.
+        </p>
+    <div class="d-flex justify-content-center">
+        <form id action="/crisis/start" method="POST">
+            <button class="btn btn-dark px-4">Start</button>
+        </form>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

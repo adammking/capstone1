@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %} Welcome Page {% endblock %}
+{% block content %}
+
+    
+
+<div class="container">
+    
+    <div class="d-flex justify-content-center mt-5">
+        <h1>Welcome! </h1>
+    </div>
+    <div class="d-flex justify-content-center">
+         <p>This site is intended to provide education and referrals for people struggling with depression</p>
+    </div>
+
+<hr>
+    <div class="d-flex justify-content-center">
+        <p>Sign up through the community page to discuss any issues regarding depression with people experiencing the
+            same thing </p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a href="/login"><button class="btn btn-dark">Community</button></a> 
+    </div>
+    
+
+<hr>
+
+    <div class="d-flex justify-content-center">
+        <p>Utilize the crisis program for assistance with a current mental health crisis</p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a href="/crisis/start"><button class="btn btn-dark px-3">Crisis</button></a> 
+    </div>
+    
+
+<hr>
+
+    <div class="d-flex justify-content-center">
+        <p>Feeling down? Check out the cheer me up page for things to help you feel better</p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a href="/cheer-me-up"><button class="btn btn-dark">Cheer me up!</button></a> 
+    </div>
+    
+
+<hr>
+
+    <div class="d-flex justify-content-center">
+        <p>Check out the tabs under info section to learn more about depression and treatments, and find referrals for
+            helplines</p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a href="/depression"><button class="btn btn-dark mb-4 px-3">Info</button></a> 
+    </div>
+    
+
+</div>
+{% endblock %}

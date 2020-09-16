@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %} {% endblock %}
+{% block content %}
+
+   
+
+    
+<img id="sky" src="/static/pictures/sebastien-gabriel-sun.png">
+
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <h1>Cheer Me Up!</h1>
+    </div>
+
+    <div class="row justify-content-center">
+        <h3>Click any of the buttons below to begin</h3>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col d-flex justify-content-center">
+            <form>
+                <button type="submit" id="joke" class= "btn btn-dark my-2">Tell me a Joke</button>
+            </form>
+        </div>
+
+        <div class="col d-flex justify-content-center">
+            <form>
+                <button type="submit" id="dog" class= "btn btn-dark my-2">I like dogs</button>
+            </form>
+        </div>
+    
+        <div class="col d-flex justify-content-center">
+            <form>
+                <button type="submit" id="cat" class= "btn btn-dark my-2">I like cats</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col d-flex justify-content-center">
+            <div id="joke-data">
+                <!--javascript data goes here-->
+            </div>
+        </div>
+
+         <div class="col d-flex justify-content-center">
+            <div id="dog-data">
+                <!--javascript data goes here-->
+            </div>
+        </div>
+
+        <div class="col d-flex justify-content-center">
+            <div id="cat-data">
+                 <!--javascript data goes here-->
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+
+
+
+
+<script src="/static/cheer-me-up.js?asd;lka"></script>
+{% endblock %}

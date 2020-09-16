@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %} Welcome {% endblock %}
+{% block content %}
+
+
+{% if users|length <= 1 %}
+<h3>Sorry, no other users yet</h3>
+{% else %}
+<div class="row justify-content-end">
+    <div class="col-sm-9">
+        <div class="row">
+
+
+            <h2>All Users</h2>
+            {% for user in users %}
+            
+            {% if user != g.user %}
+            <div class="col-lg-4 col-md-6 col-12 mt-3">
+                <div class="card user-card shadow border border-dark">
+                    <div class="card-inner">
+                        <div class="card-contents">
+                            <a href="/users/{{ user.id }}" class="card-link">
+                                <p class="ml-1">{{ user.username }}</p>
+                            </a>
+
+                            {% if g.user %}
+                            {% if g.user.is_following(user) %}
+                            <form method="POST" action="/users/stop-following/{{ user.id }}">
+                                <button class="btn btn-dark btn-sm ml-1 mb-1">Unfollow</button>
+                            </form>
+                            {% else %}
+                            <form method="POST" action="/users/follow/{{ user.id }}">
+                                <button class="btn btn-outline-dark btn-sm ml-1 mb-1">Follow</button>
+                            </form>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
