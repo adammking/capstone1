@@ -1,2 +1,3 @@
 /venv
 /application/static/api-key.js
+__pycache__
