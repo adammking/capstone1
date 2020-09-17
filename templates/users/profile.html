@@ -52,7 +52,7 @@
         <h3>My Posts</h3> <a href="/users/posts"><button class="btn btn-dark btn-sm">Add post</button></a>
         
         {% if user.posts|length == 0 %}
-            <h3>No Posts Yet</h3> <a href="/users/posts">
+            <h3>No Posts Yet</h3>
         {% else %}
         
             {% for post in posts %}
