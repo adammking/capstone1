@@ -3,6 +3,8 @@ from social_models import db, social_connect_db, User, Likes, Follows
 from app import app
 
 
+crisis_connect_db(app)
+social_connect_db(app)
 
 db.drop_all()
 db.create_all()
