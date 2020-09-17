@@ -5,7 +5,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
 from crisis_program import crisis, Crisis_Program
-from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code, State
+from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
 from social_models import db, social_connect_db, User, Likes, Follows, Post
 from forms import UserAddForm, LoginForm, CountyReferralForm, ZipReferralForm, PostAddForm, UserEditForm
 
@@ -15,8 +15,12 @@ app = Flask(__name__)
 
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "postgres:///capstone1")
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "it's a secret")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgres:///capstone1')
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = False
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 
 crisis_connect_db(app)
 social_connect_db(app)
