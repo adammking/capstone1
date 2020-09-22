@@ -6,7 +6,7 @@ from sqlalchemy.exc import IntegrityError
 
 from crisis_program import crisis, Crisis_Program
 from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
-from social_models import db, social_connect_db, User, Likes, Follows, Post
+from social_models import db, social_connect_db, User, Follows, Post
 from forms import UserAddForm, LoginForm, CountyReferralForm, ZipReferralForm, PostAddForm, UserEditForm
 
 CURR_USER_KEY = "curr_user"
