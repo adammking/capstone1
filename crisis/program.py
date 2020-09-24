@@ -1,22 +1,4 @@
-"""
-Crisis Program Outline: 
-Questions:  Are you currently having suicidal thoughts or thinking about killing yourself?
-                - Do you have a plan or a way to kill yourself?
-                - Do you have access to items you could use to carry out your plan?
 
-            Are you currenty having homicidal thoughts or thinking about killing someone else (Stranger, Friend, Family Member)?
-                - Do you have a plan or a way to kill someone else?
-                - Do you have access to items you could use to carry out your plan?
-
-            Are you currently hallucinating?
-                -Are you  hearing voices talk to you when you are alone?
-                    -Do the voices you hear tell you to kill or hurt yourself?
-                -Are you seeing people when you are alone?
-
-            Have you used any alcohol or Illegal drugs (not prescibed) today/night?
-            
-Other needed info: risk_score = int
-"""
 
 
 class Question:
