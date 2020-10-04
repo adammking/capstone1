@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, session, g, Blueprint
-from users.models import db, social_connect_db, User, Follows, Post
+from users.models import social_db, social_connect_db, User, Follows, Post
 from forms import UserAddForm, LoginForm
+from sqlalchemy.exc import IntegrityError
 
 auth_bp = Blueprint('auth_bp', __name__,
                           template_folder='templates')
@@ -53,7 +54,7 @@ def signup():
                 password=form.password.data
             )
 
-            db.session.commit()
+            social_db.session.commit()
 
         except IntegrityError as e:
             flash("Username already taken", 'danger')

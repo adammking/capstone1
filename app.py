@@ -5,8 +5,8 @@ from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
 from crisis.program import crisis, Crisis_Program
-from crisis.models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
-from users.models import db, social_connect_db, User, Follows, Post
+from crisis.models import crisis_db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
+from users.models import social_db, social_connect_db, User, Follows, Post
 from forms import UserAddForm, LoginForm, CountyReferralForm, ZipReferralForm, PostAddForm, UserEditForm
 from depression.depression import depression_bp
 from users.users import users_bp

@@ -1,4 +1,4 @@
-from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code, State
+from crisis_models import crisis_db, crisis_connect_db, Mental_Health_Center, County, Zip_Code, State
 from app import app
 
 

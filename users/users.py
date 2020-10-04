@@ -1,8 +1,23 @@
 from flask import Flask, render_template, request, flash, redirect, session, g, Blueprint
-from users.models import User, Follows, Post
+from users.models import social_db, social_connect_db, User, Follows, Post
+from forms import PostAddForm, UserEditForm
+from auth.auth import do_logout
 
 users_bp = Blueprint('users_bp', __name__, template_folder='templates')
 
+
+CURR_USER_KEY = "curr_user"
+
+
+@users_bp.before_request
+def add_user_to_g():
+    """If we're logged in, add curr user to Flask global."""
+
+    if CURR_USER_KEY in session:
+        g.user = User.query.get(session[CURR_USER_KEY])
+
+    else:
+        g.user = None
 
 @users_bp.route('/users')
 def list_users():
@@ -45,8 +60,8 @@ def show_user_posts():
             user_id=g.user.id
         )
 
-        db.session.add(post)
-        db.session.commit()
+        social_db.session.add(post)
+        social_db.session.commit()
         return redirect(f"/users/{g.user.id}")
 
     return render_template('/users/post.html', form=form)
@@ -87,7 +102,7 @@ def add_follow(follow_id):
     followed_user = User.query.get_or_404(follow_id)
     if followed_user != g.user:
         g.user.following.append(followed_user)
-        db.session.commit()
+        social_db.session.commit()
 
     return redirect(f"/users/{g.user.id}/following")
 
@@ -102,7 +117,7 @@ def stop_following(follow_id):
 
     followed_user = User.query.get(follow_id)
     g.user.following.remove(followed_user)
-    db.session.commit()
+    social_db.session.commit()
 
     return redirect(f"/users/{g.user.id}/following")
 
@@ -120,7 +135,7 @@ def change_username():
     if form.validate_on_submit():
         if User.username_authenticate(form.username.data):
             user.username = form.username.data
-            db.session.commit()
+            social_db.session.commit()
 
             return redirect(f"/users/{user.id}")
 
@@ -139,7 +154,7 @@ def delete_user():
 
     do_logout()
 
-    db.session.delete(g.user)
-    db.session.commit()
+    social_db.session.delete(g.user)
+    social_db.session.commit()
 
     return redirect("/signup")

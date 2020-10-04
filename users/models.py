@@ -1,63 +1,63 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
-db = SQLAlchemy()
+social_db = SQLAlchemy()
 bcrypt = Bcrypt()
 
 
 def social_connect_db(app):
     """Connect to database."""
 
-    db.app = app
-    db.init_app(app)
+    social_db.app = app
+    social_db.init_app(app)
 
 
-class Follows(db.Model):
+class Follows(social_db.Model):
     """Connection of a follower <-> followed_user."""
 
     __tablename__ = 'follows'
 
-    user_being_followed_id = db.Column(
-        db.Integer,
-        db.ForeignKey('users.id', ondelete="cascade"),
+    user_being_followed_id = social_db.Column(
+        social_db.Integer,
+        social_db.ForeignKey('users.id', ondelete="cascade"),
         primary_key=True,
     )
 
-    user_following_id = db.Column(
-        db.Integer,
-        db.ForeignKey('users.id', ondelete="cascade"),
+    user_following_id = social_db.Column(
+        social_db.Integer,
+        social_db.ForeignKey('users.id', ondelete="cascade"),
         primary_key=True,
     )
 
-class User(db.Model):
+class User(social_db.Model):
     """User in the system."""
 
     __tablename__ = 'users'
 
-    id = db.Column(
-        db.Integer,
+    id = social_db.Column(
+        social_db.Integer,
         primary_key=True,
     )
 
-    username = db.Column(
-        db.Text,
+    username = social_db.Column(
+        social_db.Text,
         nullable=False,
         unique=True
     )
 
-    password = db.Column(
-        db.Text,
+    password = social_db.Column(
+        social_db.Text,
         nullable=False
     )
 
-    followers = db.relationship(
+    followers = social_db.relationship(
         "User",
         secondary="follows",
         primaryjoin=(Follows.user_being_followed_id == id),
         secondaryjoin=(Follows.user_following_id == id)
     )
 
-    following = db.relationship(
+    following = social_db.relationship(
         "User",
         secondary="follows",
         primaryjoin=(Follows.user_following_id == id),
@@ -65,7 +65,7 @@ class User(db.Model):
     )
 
 
-    posts = db.relationship('Post', backref='users')
+    posts = social_db.relationship('Post', backref='users')
 
 
 
@@ -96,7 +96,7 @@ class User(db.Model):
             password=hashed_pwd,
         )
 
-        db.session.add(user)
+        social_db.session.add(user)
         return user
 
     @classmethod
@@ -130,52 +130,52 @@ class User(db.Model):
         else:
             return False
 
-class Post(db.Model):
+class Post(social_db.Model):
     """An individual post."""
 
     __tablename__ = 'posts'
 
-    id = db.Column(
-        db.Integer,
+    id = social_db.Column(
+        social_db.Integer,
         primary_key=True,
     )
 
-    title = db.Column(
-        db.Text,
+    title = social_db.Column(
+        social_db.Text,
         nullable=False,
     )
 
-    body = db.Column(
-        db.Text,
+    body = social_db.Column(
+        social_db.Text,
         nullable=False,
     )
 
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey('users.id', ondelete='CASCADE'),
+    user_id = social_db.Column(
+        social_db.Integer,
+        social_db.ForeignKey('users.id', ondelete='CASCADE'),
         
     )
 
     
 
-class Likes(db.Model):
+class Likes(social_db.Model):
     """Mapping user likes to posts."""
 
     __tablename__ = 'likes' 
 
-    id = db.Column(
-        db.Integer,
+    id = social_db.Column(
+        social_db.Integer,
         primary_key=True
     )
 
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey('users.id', ondelete='cascade')
+    user_id = social_db.Column(
+        social_db.Integer,
+        social_db.ForeignKey('users.id', ondelete='cascade')
     )
 
-    post_id = db.Column(
-        db.Integer,
-        db.ForeignKey('posts.id', ondelete='cascade'),
+    post_id = social_db.Column(
+        social_db.Integer,
+        social_db.ForeignKey('posts.id', ondelete='cascade'),
         unique=True
     ) 
 
