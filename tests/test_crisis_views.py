@@ -4,7 +4,7 @@
 import os
 from unittest import TestCase
 from flask import session
-from crisis_models import db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
+from crisis.models import crisis_db, crisis_connect_db, Mental_Health_Center, County, Zip_Code
 
 
 
@@ -13,7 +13,7 @@ os.environ['DATABASE_URL'] = "postgresql:///capstone1-test"
 from app import app, CURR_USER_KEY
 
 
-db.create_all()
+crisis_db.create_all()
 
 app.config['WTF_CSRF_ENABLED'] = False
 
@@ -24,8 +24,8 @@ class UserViewTestCase(TestCase):
     def setUp(self):
         """Create test client, add sample data."""
 
-        db.drop_all()
-        db.create_all()
+        crisis_db.drop_all()
+        crisis_db.create_all()
 
         self.client = app.test_client()
 

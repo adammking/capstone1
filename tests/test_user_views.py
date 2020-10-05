@@ -2,8 +2,8 @@
 
 import os
 from unittest import TestCase
-
-from social_models import db, social_connect_db, User, Follows
+from flask import session
+from users.models import social_db, social_connect_db, User, Follows
 from bs4 import BeautifulSoup
 
 os.environ['DATABASE_URL'] = "postgresql:///capstone1-test"
@@ -12,7 +12,7 @@ os.environ['DATABASE_URL'] = "postgresql:///capstone1-test"
 from app import app, CURR_USER_KEY
 
 
-db.create_all()
+social_db.create_all()
 
 
 app.config['WTF_CSRF_ENABLED'] = False
@@ -24,8 +24,8 @@ class UserViewTestCase(TestCase):
     def setUp(self):
         """Create test client, add sample data."""
 
-        db.drop_all()
-        db.create_all()
+        social_db.drop_all()
+        social_db.create_all()
 
         self.client = app.test_client()
 
@@ -43,11 +43,11 @@ class UserViewTestCase(TestCase):
         self.u3 = User.signup("hij", "password")
         self.u4 = User.signup("testing", "password")
 
-        db.session.commit()
+        social_db.session.commit()
 
     def tearDown(self):
         resp = super().tearDown()
-        db.session.rollback()
+        social_db.session.rollback()
         return resp
 
     def test_users_index(self):
@@ -58,10 +58,10 @@ class UserViewTestCase(TestCase):
             resp = c.get("/users")
 
            
-            self.assertIn("@abc", str(resp.data))
-            self.assertIn("@efg", str(resp.data))
-            self.assertIn("@hij", str(resp.data))
-            self.assertIn("@testing", str(resp.data))
+            self.assertIn("abc", str(resp.data))
+            self.assertIn("efg", str(resp.data))
+            self.assertIn("hij", str(resp.data))
+            self.assertIn("testing", str(resp.data))
 
     def test_user_profile(self):
         with self.client as c:
@@ -83,8 +83,8 @@ class UserViewTestCase(TestCase):
         f3 = Follows(user_being_followed_id=self.testuser_id,
                      user_following_id=self.u1_id)
 
-        db.session.add_all([f1, f2, f3])
-        db.session.commit()
+        social_db.session.add_all([f1, f2, f3])
+        social_db.session.commit()
 
     def test_user_show_with_follows(self):
 
@@ -119,10 +119,10 @@ class UserViewTestCase(TestCase):
 
             resp = c.get(f"/users/{self.testuser_id}/following")
             self.assertEqual(resp.status_code, 200)
-            self.assertIn("@abc", str(resp.data))
-            self.assertIn("@efg", str(resp.data))
-            self.assertNotIn("@hij", str(resp.data))
-            self.assertNotIn("@testing", str(resp.data))
+            self.assertIn("abc", str(resp.data))
+            self.assertIn("efg", str(resp.data))
+            self.assertNotIn("hij", str(resp.data))
+            self.assertNotIn("testing", str(resp.data))
 
     def test_show_followers(self):
 
@@ -133,10 +133,10 @@ class UserViewTestCase(TestCase):
 
             resp = c.get(f"/users/{self.testuser_id}/followers")
 
-            self.assertIn("@abc", str(resp.data))
-            self.assertNotIn("@efg", str(resp.data))
-            self.assertNotIn("@hij", str(resp.data))
-            self.assertNotIn("@testing", str(resp.data))
+            self.assertIn("abc", str(resp.data))
+            self.assertNotIn("efg", str(resp.data))
+            self.assertNotIn("hij", str(resp.data))
+            self.assertNotIn("testing", str(resp.data))
 
     def test_unauthorized_following_page_access(self):
         self.setup_followers()
