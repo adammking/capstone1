@@ -1,11 +1,11 @@
-# # First Capstone Project 
+# First Capstone Project 
 
 This website was built to provide information and assistance with depression. It is deployed through heroku and can be accessed through the link below. 
 
 Link: https://capstoneone.herokuapp.com/
  
 
-# # # Installation
+# # Installation
 
 To get this application running, make sure you do the following in the Terminal:
 
@@ -16,7 +16,7 @@ To get this application running, make sure you do the following in the Terminal:
 5. `flask run`
 
 
-# # # Features
+# # Features
 
 - Community
 	- Community provides people with the opportunity to create a profile and create posts to talk about issues or skill that help them manage their symptoms.
@@ -30,7 +30,7 @@ To get this application running, make sure you do the following in the Terminal:
 - Info
 	- The info page offers information on depression along with a list of resources that can be utilized for assistance and treatment.  
 
-# # # API's Utilized
+# # API's Utilized
 Jokes API: 
 https://icanhazdad1joke.com/
 
