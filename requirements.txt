@@ -63,6 +63,7 @@ jupyterlab-pygments==0.2.2
 jupyterlab-widgets==3.0.4
 MarkupSafe==2.1.1
 matplotlib-inline==0.1.6
+maturin==0.14.5
 mistune==2.0.4
 more-itertools==9.0.0
 mysql-connector-python==8.0.31
