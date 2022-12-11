@@ -93,7 +93,6 @@ pure-eval==0.2.2
 pycodestyle==2.10.0
 pycparser==2.21
 Pygments==2.13.0
-pypiwin32==223
 PyQt5==5.15.7
 PyQt5-Qt5==5.15.2
 PyQt5-sip==12.11.0
